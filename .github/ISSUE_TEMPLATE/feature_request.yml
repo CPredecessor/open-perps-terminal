@@ -1,0 +1,20 @@
+name: Feature request
+description: Suggest a focused improvement or protocol adapter
+title: "feat: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    attributes:
+      label: Problem
+      description: What user problem would this solve?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Public data source
+      description: Link official API documentation when proposing a new venue.
