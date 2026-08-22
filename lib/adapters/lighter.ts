@@ -4,12 +4,12 @@ const first = (record: Record<string, unknown>, keys: string[]) => keys.map((key
 
 export async function getLighterMarkets(robinhood=false): Promise<VenueResult> {
   const venue=robinhood?"Lighter · Robinhood" as const:"Lighter" as const;
-  const endpoint=`${robinhood?"https://api.rh.lighter.xyz":"https://mainnet.zklighter.elliot.ai"}/api/v1/orderBooks?filter=perp`;
+  const endpoint=`${robinhood?"https://api.rh.lighter.xyz":"https://mainnet.zklighter.elliot.ai"}/api/v1/orderBookDetails`;
   try {
     const response = await fetch(endpoint, { next: { revalidate: 15 } });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const payload = await response.json() as Record<string, unknown> | unknown[];
-    const rows = Array.isArray(payload) ? payload : (payload.order_books ?? payload.orderBooks ?? []) as unknown[];
+    const rows = Array.isArray(payload) ? payload : (payload.order_book_details ?? payload.orderBookDetails ?? []) as unknown[];
     const markets = rows.filter((row): row is Record<string, unknown> => !!row && typeof row === "object").map((row, index) => {
       const symbol = String(first(row, ["symbol", "market_symbol", "name"]) ?? `MARKET-${index}`).replace(/[-_/]?(PERP|USD|USDC)$/i, "");
       const current = numeric(first(row, ["last_trade_price", "last_price", "mark_price", "price"]));
