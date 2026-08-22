@@ -50,7 +50,7 @@ function accountsFrom(payload: AnyRecord) {
   return [];
 }
 
-async function lighter(address: string, robinhood: boolean) {
+async function lighter(address: string, robinhood: boolean, readOnlyToken?: string) {
   const base = robinhood ? LIGHTER_RH : LIGHTER_MAIN;
   const venue = robinhood ? "Lighter · Robinhood" : "Lighter";
   try {
@@ -67,7 +67,7 @@ async function lighter(address: string, robinhood: boolean) {
     });
     const collateral=accounts.reduce((s:number,a:AnyRecord)=>s+n(a.collateral ?? a.account_value ?? a.total_asset_value),0);
     const tradePayloads = await Promise.all(accounts.map(async(a:AnyRecord)=>{
-      try { const r=await deadlineFetch(`${base}/trades?account_index=${a.account_index}&market_id=255&market_type=perp&sort_by=timestamp&sort_dir=desc&limit=50`); return r.ok ? r.json() : {code:r.status,message:`HTTP ${r.status}`}; } catch (error) { return {code:-1,message:error instanceof Error?error.message:"Trade history unavailable"}; }
+      try { const r=await deadlineFetch(`${base}/trades?account_index=${a.account_index}&market_id=255&market_type=perp&sort_by=timestamp&sort_dir=desc&limit=50`,readOnlyToken?{headers:{Authorization:readOnlyToken}}:undefined); return r.ok ? r.json() : {code:r.status,message:`HTTP ${r.status}`}; } catch (error) { return {code:-1,message:error instanceof Error?error.message:"Trade history unavailable"}; }
     }));
     const rawTrades=tradePayloads.flatMap((p:AnyRecord)=>Array.isArray(p)?p:(p.trades??[])).sort((a:AnyRecord,b:AnyRecord)=>n(b.timestamp)-n(a.timestamp)).slice(0,50);
     const transactions=rawTrades.map((t:AnyRecord)=>({id:String(t.trade_id??t.id??`${t.timestamp}-${t.market_id}`),time:n(t.timestamp),symbol:String(t.symbol??t.market_symbol??`Market #${t.market_id??"?"}`),side:t.is_ask===true||n(t.ask_account_index)>=0&&String(t.side).toLowerCase()==="sell"?"SELL":String(t.side??t.type??"TRADE").toUpperCase(),price:n(t.price),size:n(t.size??t.base_amount),value:n(t.price)*n(t.size??t.base_amount),fee:n(t.fee??t.usd_fee),realizedPnl:n(t.realized_pnl),type:String(t.trade_type??t.type??"Trade") }));
@@ -121,16 +121,29 @@ async function arcus(address:string){
   }catch(error){const message=error instanceof Error?error.message:"Unavailable";return{venue,network:"Robinhood Chain",quote:"USDG",ok:false,access:message.toLowerCase().includes("whitelist")?"whitelist":undefined,error:message,positions:[],transactions:[]};}
 }
 
-function perpl(){return{venue:"Perpl",network:"Monad",quote:"USDC",ok:false,access:"api_key",volume:null,volumeVerified:false,volumeLabel:"AUTH REQUIRED",error:"Read-only API-key signature required for account and trading history.",positions:[],transactions:[]};}
+function perpl(){return{venue:"Perpl",network:"Monad",quote:"USDC",ok:false,access:"unsafe_scope",volume:null,volumeVerified:false,volumeLabel:"AUTH BLOCKED",error:"Perpl API enrollment is not guaranteed read-only. This terminal will not request a trading-capable key.",positions:[],transactions:[]};}
 
-export async function GET(request: Request) {
-  const address = new URL(request.url).searchParams.get("address")?.trim() ?? "";
-  if (!/^0x[a-fA-F0-9]{40}$/.test(address)) return Response.json({ error:"Enter a valid 42-character EVM address." }, { status:400 });
-  const sources = await Promise.all([hyperliquid(address), lighter(address,false), lighter(address,true), sodex(address), arcus(address), Promise.resolve(perpl())]);
-  return Response.json({ address, generatedAt:new Date().toISOString(), sources,
+function safeReadOnlyToken(value:unknown){const token=typeof value==="string"?value.trim():"";return token.length<=512&&/^ro:\d+:(single|all):\d+:[a-zA-Z0-9_-]+$/.test(token)?token:undefined}
+
+async function analyzeAddress(address:string,auth?:AnyRecord){
+  const sources = await Promise.all([hyperliquid(address), lighter(address,false,safeReadOnlyToken(auth?.lighterMain)), lighter(address,true,safeReadOnlyToken(auth?.lighterRobinhood)), sodex(address), arcus(address), Promise.resolve(perpl())]);
+  return { address, generatedAt:new Date().toISOString(), sources,
     summary:{ activeSources:sources.filter(s=>s.ok&&((s.accountValue??0)>0||s.positions.length>0)).length,
       accountValue:sources.reduce((sum,s)=>sum+(s.ok?n(s.accountValue):0),0), exposure:sources.reduce((sum,s)=>sum+(s.ok?n(s.totalExposure):0),0),
       unrealizedPnl:sources.reduce((sum,s)=>sum+(s.ok?n(s.unrealizedPnl):0),0), allTimePnl:sources.reduce((sum,s)=>sum+(s.ok&&s.allTimePnl!==null?n(s.allTimePnl):0),0), allTimeSources:sources.filter(s=>s.ok&&s.allTimePnl!==null).length, volume:sources.reduce((sum,s)=>sum+(s.ok&&s.volumeVerified?n(s.volume):0),0), volumeSources:sources.filter(s=>s.ok&&s.volumeVerified).length, positions:sources.reduce((sum,s)=>sum+s.positions.length,0), transactions:sources.reduce((sum,s)=>sum+(s.transactions?.length??0),0) },
     notes:{ robinhood:"Robinhood Chain is a separate Lighter deployment. Accounts, market IDs and collateral are not shared with Lighter Mainnet.", points:"Public wallet endpoints do not expose a verified total points balance. The analyzer will not estimate it." }
-  }, { headers:{"cache-control":"public, s-maxage=10, stale-while-revalidate=30"} });
+  };
+}
+
+export async function GET(request: Request) {
+  const address = new URL(request.url).searchParams.get("address")?.trim() ?? "";
+  if (!/^0x[a-fA-F0-9]{40}$/.test(address)) return Response.json({ error:"Enter a valid 42-character EVM address." }, { status:400 });
+  return Response.json(await analyzeAddress(address), { headers:{"cache-control":"public, s-maxage=10, stale-while-revalidate=30"} });
+}
+
+export async function POST(request:Request){
+  let body:AnyRecord;try{body=await request.json() as AnyRecord}catch{return Response.json({error:"Invalid request."},{status:400})}
+  const address=typeof body.address==="string"?body.address.trim():"";
+  if(!/^0x[a-fA-F0-9]{40}$/.test(address))return Response.json({error:"Enter a valid 42-character EVM address."},{status:400});
+  return Response.json(await analyzeAddress(address,body.auth),{headers:{"cache-control":"private, no-store","pragma":"no-cache"}})
 }
