@@ -1,12 +1,14 @@
 export type NormalizedMarket = {
   symbol: string;
-  venue: "Hyperliquid" | "Lighter";
+  venue: "Hyperliquid" | "Lighter" | "Lighter · Robinhood" | "SoDEX" | "Arcus Perps" | "Perpl";
   price: number;
   change: number;
   volume: number;
   oi: number;
   funding: number;
 };
+
+export type VenueName = NormalizedMarket["venue"];
 
 export type VenueResult = {
   venue: NormalizedMarket["venue"];
