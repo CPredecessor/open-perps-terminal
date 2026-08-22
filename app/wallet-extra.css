@@ -5,3 +5,6 @@
 .tx-block .position-wrap{max-height:430px}
 .tx-block table{min-width:1060px}
 .tx-block td:first-child{white-space:nowrap;color:#82908d;font:10px monospace}
+.vr-stats{grid-template-columns:repeat(4,1fr)}
+@media(max-width:800px){.vr-stats{grid-template-columns:repeat(2,1fr);gap:16px}.vr-stats span:nth-child(2){border-right:0}.vr-stats span:nth-child(n+3){padding-top:14px;border-top:1px solid var(--line)}}
+@media(max-width:560px){.vr-stats{grid-template-columns:1fr}.vr-stats span{border-top:0!important;padding-top:0!important}}
