@@ -1,6 +1,8 @@
 const HL_API = "https://api.hyperliquid.xyz/info";
 const LIGHTER_MAIN = "https://mainnet.zklighter.elliot.ai/api/v1";
 const LIGHTER_RH = "https://api.rh.lighter.xyz/api/v1";
+const SODEX = "https://mainnet-gw.sodex.dev/api/v1/perps";
+const ARCUS = "https://api.arcus.xyz/v1";
 
 const n = (value: unknown) => Number.isFinite(Number(value)) ? Number(value) : 0;
 
@@ -82,10 +84,38 @@ async function lighter(address: string, robinhood: boolean) {
   } catch (error) { return { venue, network:robinhood?"Robinhood Chain":"Ethereum", quote:robinhood?"USDG":"USDC", ok:false, error:error instanceof Error?error.message:"Unavailable", positions:[] }; }
 }
 
+async function sodex(address:string){
+  const venue="SoDEX";
+  try{
+    const get=(path:string)=>deadlineFetch(`${SODEX}${path}`,{headers:{accept:"application/json"}}).then(async r=>{if(!r.ok)throw new Error(`HTTP ${r.status}`);const p=await r.json() as AnyRecord;if(n(p.code)!==0)throw new Error(p.error?.message??p.error??`Code ${p.code}`);return p.data??p});
+    const [state,positionPayload,tradePayload]=await Promise.all([get(`/accounts/${address}/state`),get(`/accounts/${address}/positions`),get(`/accounts/${address}/trades?limit=50`)]);
+    const rawPositions=Array.isArray(state.P)?state.P:Array.isArray(positionPayload)?positionPayload:(positionPayload.positions??positionPayload.orders??[]);
+    const positions=rawPositions.filter((p:AnyRecord)=>n(p.size??p.s??p.position??p.q)!==0).map((p:AnyRecord)=>{const raw=n(p.size??p.s??p.position??p.q);return{symbol:String(p.symbol??p.sym??p.market??p.m??"?"),side:String(p.side??(raw>=0?"LONG":"SHORT")).toUpperCase(),size:Math.abs(raw),value:Math.abs(n(p.value??p.notional??p.pv)),entry:n(p.entryPrice??p.entry_price??p.ep),pnl:n(p.unrealizedPnl??p.unrealized_pnl??p.upnl),liquidation:n(p.liquidationPrice??p.liquidation_price??p.lp)}});
+    const rawTrades=(Array.isArray(tradePayload)?tradePayload:(tradePayload.trades??[])).slice(0,50);
+    const transactions=rawTrades.map((t:AnyRecord)=>({id:String(t.tradeID??t.tradeId??t.id??`${t.time}-${t.symbol}`),time:n(t.time??t.timestamp),symbol:String(t.symbol??t.market??"?"),side:String(t.side??t.direction??"TRADE").toUpperCase(),price:n(t.price??t.p),size:n(t.size??t.qty??t.q),value:n(t.value??t.notional)||n(t.price??t.p)*n(t.size??t.qty??t.q),fee:n(t.fee),realizedPnl:n(t.realizedPnl??t.realized_pnl),type:String(t.type??"Trade")}));
+    return{venue,network:"ValueChain",quote:"vUSDC",ok:true,accountValue:n(state.av??state.accountValue),withdrawable:n(state.amw??state.availableMargin),totalExposure:positions.reduce((s:number,p:AnyRecord)=>s+p.value,0),unrealizedPnl:positions.reduce((s:number,p:AnyRecord)=>s+p.pnl,0),allTimePnl:null,trades:transactions.length,volume:transactions.reduce((s:number,t:AnyRecord)=>s+t.value,0),positions,transactions,historyStatus:"partial",historyMessage:transactions.length?undefined:"No public SoDEX trades found for the primary account."};
+  }catch(error){return{venue,network:"ValueChain",quote:"vUSDC",ok:false,error:error instanceof Error?error.message:"Unavailable",positions:[],transactions:[]};}
+}
+
+async function arcus(address:string){
+  const venue="Arcus Perps";
+  try{
+    const get=(path:string)=>deadlineFetch(`${ARCUS}${path}`).then(async r=>{const p=await r.json() as AnyRecord;if(r.status===403)throw new Error(p.error??"Address whitelist required");if(!r.ok)throw new Error(p.error??`HTTP ${r.status}`);return p});
+    const [account,positionPayload,fillPayload]=await Promise.all([get(`/account?address=${address}`),get(`/positions?address=${address}`),get(`/fills?address=${address}&limit=50`)]);
+    const rawPositions=Object.values(positionPayload.positions??{});
+    const positions=rawPositions.map((p:AnyRecord)=>{const raw=n(p.size??p.positionSize);return{symbol:String(p.marketDisplayName??p.market??p.marketId??"?"),side:String(p.side??(raw>=0?"LONG":"SHORT")).toUpperCase(),size:Math.abs(raw),value:Math.abs(n(p.notional??p.positionValue)),entry:n(p.entryPrice),pnl:n(p.unrealizedPnl),liquidation:n(p.liquidationPrice)}});
+    const rawFills=(fillPayload.fills??fillPayload.data??[]).slice(0,50);
+    const transactions=rawFills.map((t:AnyRecord)=>({id:String(t.tradeId??t.fillId??t.id),time:n(t.timestamp??t.time),symbol:String(t.marketDisplayName??t.market??t.marketId??"?"),side:String(t.side??"TRADE").toUpperCase(),price:n(t.price),size:n(t.size),value:n(t.notional)||n(t.price)*n(t.size),fee:n(t.fee),realizedPnl:n(t.realizedPnl),type:String(t.type??"Fill")}));
+    return{venue,network:"Robinhood Chain",quote:"USDG",ok:true,accountValue:n(account.accountValue??account.equity),withdrawable:n(account.availableBalance??account.withdrawable),totalExposure:positions.reduce((s:number,p:AnyRecord)=>s+p.value,0),unrealizedPnl:positions.reduce((s:number,p:AnyRecord)=>s+p.pnl,0),allTimePnl:n(account.realizedPnl??account.allTimePnl),trades:transactions.length,volume:transactions.reduce((s:number,t:AnyRecord)=>s+t.value,0),positions,transactions};
+  }catch(error){const message=error instanceof Error?error.message:"Unavailable";return{venue,network:"Robinhood Chain",quote:"USDG",ok:false,access:message.toLowerCase().includes("whitelist")?"whitelist":undefined,error:message,positions:[],transactions:[]};}
+}
+
+function perpl(){return{venue:"Perpl",network:"Monad",quote:"USDC",ok:false,access:"api_key",error:"Read-only API-key signature required for account and trading history.",positions:[],transactions:[]};}
+
 export async function GET(request: Request) {
   const address = new URL(request.url).searchParams.get("address")?.trim() ?? "";
   if (!/^0x[a-fA-F0-9]{40}$/.test(address)) return Response.json({ error:"Enter a valid 42-character EVM address." }, { status:400 });
-  const sources = await Promise.all([hyperliquid(address), lighter(address,false), lighter(address,true)]);
+  const sources = await Promise.all([hyperliquid(address), lighter(address,false), lighter(address,true), sodex(address), arcus(address), Promise.resolve(perpl())]);
   return Response.json({ address, generatedAt:new Date().toISOString(), sources,
     summary:{ activeSources:sources.filter(s=>s.ok&&((s.accountValue??0)>0||s.positions.length>0)).length,
       accountValue:sources.reduce((sum,s)=>sum+(s.ok?n(s.accountValue):0),0), exposure:sources.reduce((sum,s)=>sum+(s.ok?n(s.totalExposure):0),0),
