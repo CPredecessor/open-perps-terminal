@@ -1,0 +1,34 @@
+"use client";
+import { FormEvent, useState } from "react";
+import Link from "next/link";
+
+const SAMPLE="0xb83de012dba672c76a7dbbbf3e459cb59d7d6e36";
+const usd=(v:number=0)=>new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",notation:Math.abs(v)>=1e6?"compact":"standard",maximumFractionDigits:2}).format(v);
+const short=(a:string)=>`${a.slice(0,8)}…${a.slice(-6)}`;
+
+export default function WalletPage(){
+  const [address,setAddress]=useState(""),[data,setData]=useState<any>(null),[error,setError]=useState(""),[loading,setLoading]=useState(false);
+  async function run(target:string){setError("");setLoading(true);setData(null);try{const r=await fetch(`/api/wallet?address=${encodeURIComponent(target)}`);const j=await r.json();if(!r.ok)throw new Error(j.error);setData(j)}catch(err){setError(err instanceof Error?err.message:"Analysis failed")}finally{setLoading(false)}}
+  async function analyze(e?:FormEvent){e?.preventDefault();await run(address)}
+  function useSample(){setAddress(SAMPLE);void run(SAMPLE)}
+  return <main className="wallet-page">
+    <header className="topbar"><Link className="brand" href="/"><span className="brand-mark"><i/><i/><i/></span><span>OPEN PERPS</span><em>TERMINAL</em></Link><nav><Link href="/">Markets</Link><Link className="active" href="/wallet">Wallet analyzer</Link><a href="https://github.com/CPredecessor/open-perps-terminal" target="_blank">GitHub ↗</a></nav><div className="header-actions"><span className="read-only"><i/> READ-ONLY</span></div></header>
+    <div className="wallet-shell">
+      <section className="wallet-intro"><p className="section-kicker">CROSS-DEX WALLET INTELLIGENCE</p><h1>Inspect one address<br/><span>across three venues.</span></h1><p>Public account state only. No wallet connection, signature or private key.</p>
+        <form onSubmit={analyze}><label><span>0x</span><input value={address} onChange={e=>setAddress(e.target.value.trim())} placeholder="Paste a 42-character EVM address" aria-label="Wallet address"/></label><button id="analyze" disabled={loading}>{loading?"Scanning venues…":"Analyze wallet →"}</button></form>
+        <div className="quick-test"><span>QUICK TEST</span><button onClick={useSample}>Abraxas public wallet · {short(SAMPLE)}</button></div>{error&&<div className="wallet-error">{error}</div>}
+      </section>
+
+      {!data&&!loading&&<section className="source-strip"><Source name="Hyperliquid" detail="HyperCore · public state" tone="green"/><Source name="Lighter" detail="Ethereum · USDC" tone="violet"/><Source name="Lighter × Robinhood" detail="Robinhood Chain · USDG" tone="lime"/></section>}
+      {loading&&<section className="scan-state"><div className="scanner"/><p>Querying public account endpoints…</p><span>Hyperliquid · Lighter Mainnet · Robinhood Chain</span></section>}
+      {data&&<Results data={data}/>} 
+      <section className="rh-note"><div><p className="section-kicker">ROBINHOOD CHAIN CHECK</p><h2>A separate Lighter deployment,<br/>not a campaign label.</h2></div><div className="rh-facts"><span><b>API</b>api.rh.lighter.xyz</span><span><b>Collateral</b>USDG</span><span><b>Margin</b>Isolated positions</span><span><b>Points</b>2× via Robinhood Wallet*</span></div><p className="fine">*Eligibility and final point calculation are controlled by Lighter. The verified total point balance is not exposed by the public wallet endpoint, so Open Perps does not estimate it.</p></section>
+    </div>
+  </main>
+}
+
+function Source({name,detail,tone}:{name:string;detail:string;tone:string}){return <article className={`source-card ${tone}`}><i/><div><b>{name}</b><span>{detail}</span></div><em>READY</em></article>}
+function Results({data}:{data:any}){return <section className="wallet-results"><div className="result-head"><div><p className="section-kicker">ANALYSIS COMPLETE</p><h2>{short(data.address)}</h2></div><span>{new Date(data.generatedAt).toLocaleTimeString()} UTC snapshot</span></div><div className="wallet-metrics"><article><span>COMBINED VALUE</span><b>{usd(data.summary.accountValue)}</b></article><article><span>OPEN EXPOSURE</span><b>{usd(data.summary.exposure)}</b></article><article><span>UNREALIZED PNL</span><b className={data.summary.unrealizedPnl>=0?"gain":"loss"}>{usd(data.summary.unrealizedPnl)}</b></article><article><span>OPEN POSITIONS</span><b>{data.summary.positions}</b></article></div>
+  <div className="venue-results">{data.sources.map((s:any)=><article className="venue-result" key={s.venue}><div className="vr-head"><div><i className={s.venue.includes("Robinhood")?"rh-logo":s.venue==="Hyperliquid"?"hl-logo":"li-logo"}>{s.venue[0]}</i><span><b>{s.venue}</b><small>{s.network}{s.quote?` · ${s.quote}`:""}</small></span></div><em className={s.ok?"ok":"bad"}>{s.ok?"● CONNECTED":"● UNAVAILABLE"}</em></div>{s.ok?<><div className="vr-stats"><span>Account value <b>{usd(s.accountValue)}</b></span><span>Exposure <b>{usd(s.totalExposure)}</b></span><span>Unrealized PnL <b className={s.unrealizedPnl>=0?"gain":"loss"}>{usd(s.unrealizedPnl)}</b></span></div>{s.points&&<div className="points-row"><span>ROBINHOOD POINTS</span><b>{s.points.multiplier}</b><em>Balance private / unavailable</em></div>}<PositionTable positions={s.positions}/></>:<div className="source-empty">{s.error||"No public account response"}</div>}</article>)}</div>
+  <div className="integrity-note"><b>DATA INTEGRITY</b><p>{data.notes.robinhood} {data.notes.points}</p></div></section>}
+function PositionTable({positions}:{positions:any[]}){if(!positions.length)return <div className="source-empty">No open positions found on this venue.</div>;return <div className="position-wrap"><table><thead><tr><th>MARKET</th><th>SIDE</th><th>VALUE</th><th>ENTRY</th><th>PNL</th><th>LIQUIDATION</th></tr></thead><tbody>{positions.map((p,i)=><tr key={`${p.symbol}-${i}`}><td><b>{p.symbol}</b></td><td><span className={p.side==="LONG"?"long":"short"}>{p.side}</span></td><td>{usd(p.value)}</td><td>{usd(p.entry)}</td><td className={p.pnl>=0?"gain":"loss"}>{usd(p.pnl)}</td><td>{p.liquidation?usd(p.liquidation):"—"}</td></tr>)}</tbody></table></div>}
