@@ -1,10 +1,11 @@
 import { getHyperliquidMarkets } from "../../../lib/adapters/hyperliquid";
 import { getLighterMarkets } from "../../../lib/adapters/lighter";
+import { getArcusMarkets, getPerplMarkets, getSodexMarkets } from "../../../lib/adapters/extended-venues";
 
 export const revalidate = 15;
 
 export async function GET() {
-  const venues = await Promise.all([getHyperliquidMarkets(), getLighterMarkets()]);
+  const venues = await Promise.all([getHyperliquidMarkets(), getLighterMarkets(), getLighterMarkets(true), getSodexMarkets(), getArcusMarkets(), getPerplMarkets()]);
   return Response.json({
     generatedAt: new Date().toISOString(),
     partial: venues.some((venue) => !venue.ok),
