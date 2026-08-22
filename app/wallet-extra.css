@@ -1,0 +1,7 @@
+.tx-block{border-top:1px solid var(--line);margin-top:8px}
+.tx-title{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:#0e1516}
+.tx-title b{font:9px monospace;letter-spacing:.1em;color:#aab5b2}
+.tx-title span{font:9px monospace;color:#5f6c69}
+.tx-block .position-wrap{max-height:430px}
+.tx-block table{min-width:1060px}
+.tx-block td:first-child{white-space:nowrap;color:#82908d;font:10px monospace}
