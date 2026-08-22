@@ -1,20 +1,34 @@
 "use client";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
+
+declare global {
+  interface Window {
+    ethereum?: {
+      request(args:{method:string;params?:unknown[]}):Promise<unknown>;
+      on?(event:string,handler:(...args:any[])=>void):void;
+      removeListener?(event:string,handler:(...args:any[])=>void):void;
+    };
+  }
+}
 
 const SAMPLE="0xb83de012dba672c76a7dbbbf3e459cb59d7d6e36";
 const usd=(v:number|null=0)=>v===null?"NOT AVAILABLE":new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",notation:Math.abs(v)>=1e6?"compact":"standard",maximumFractionDigits:2}).format(v);
 const short=(a:string)=>`${a.slice(0,8)}…${a.slice(-6)}`;
 
 export default function WalletPage(){
-  const [address,setAddress]=useState(""),[data,setData]=useState<any>(null),[error,setError]=useState(""),[loading,setLoading]=useState(false);
+  const [address,setAddress]=useState(""),[data,setData]=useState<any>(null),[error,setError]=useState(""),[loading,setLoading]=useState(false),[connected,setConnected]=useState(false),[connecting,setConnecting]=useState(false);
   async function run(target:string){setError("");setLoading(true);setData(null);try{const r=await fetch(`/api/wallet?address=${encodeURIComponent(target)}`);const j=await r.json();if(!r.ok)throw new Error(j.error);setData(j)}catch(err){setError(err instanceof Error?err.message:"Analysis failed")}finally{setLoading(false)}}
   async function analyze(e?:FormEvent){e?.preventDefault();await run(address)}
   function useSample(){setAddress(SAMPLE);void run(SAMPLE)}
+  async function connectWallet(){setError("");if(!window.ethereum){setError("No injected EVM wallet found. Install MetaMask, Rabby or open this page in a wallet browser.");return}setConnecting(true);try{const result=await window.ethereum.request({method:"eth_requestAccounts"});const account=Array.isArray(result)&&typeof result[0]==="string"?result[0]:"";if(!account)throw new Error("The wallet did not return an account.");setAddress(account);setConnected(true);await run(account)}catch(err){setError(err instanceof Error?err.message:"Wallet connection was cancelled.")}finally{setConnecting(false)}}
+  function disconnectWallet(){setConnected(false);setAddress("");setData(null);setError("")}
+  useEffect(()=>{const provider=window.ethereum;if(!provider?.on)return;const handleAccounts=(accounts:unknown)=>{const next=Array.isArray(accounts)&&typeof accounts[0]==="string"?accounts[0]:"";if(!next){disconnectWallet();return}setAddress(next);setConnected(true);void run(next)};provider.on("accountsChanged",handleAccounts);return()=>provider.removeListener?.("accountsChanged",handleAccounts)},[]);
   return <main className="wallet-page">
     <header className="topbar"><Link className="brand" href="/"><span className="brand-mark"><i/><i/><i/></span><span>OPEN PERPS</span><em>TERMINAL</em></Link><nav><Link href="/">Markets</Link><Link className="active" href="/wallet">Wallet analyzer</Link><a href="https://github.com/CPredecessor/open-perps-terminal" target="_blank">GitHub ↗</a></nav><div className="header-actions"><span className="read-only"><i/> READ-ONLY</span></div></header>
     <div className="wallet-shell">
-      <section className="wallet-intro"><p className="section-kicker">CROSS-DEX WALLET INTELLIGENCE</p><h1>Inspect one address<br/><span>across six venues.</span></h1><p>Public account state only. No wallet connection, signature or private key.</p>
+      <section className="wallet-intro"><p className="section-kicker">CROSS-DEX WALLET INTELLIGENCE</p><h1>Inspect one address<br/><span>across six venues.</span></h1><p>Connect an EVM wallet to fill its public address, or paste any address manually.</p>
+        <div className="wallet-connect-row">{connected?<div className="connected-wallet"><span><i/> {short(address)}</span><button onClick={disconnectWallet}>Forget wallet</button></div>:<button className="connect-wallet" onClick={connectWallet} disabled={connecting}>{connecting?"Connecting…":"Connect EVM wallet"}</button>}<span className="wallet-safety">ADDRESS ONLY · NO SIGNATURE · NO TRANSACTION</span></div>
         <form onSubmit={analyze}><label><span>0x</span><input value={address} onChange={e=>setAddress(e.target.value.trim())} placeholder="Paste a 42-character EVM address" aria-label="Wallet address"/></label><button id="analyze" disabled={loading}>{loading?"Scanning venues…":"Analyze wallet →"}</button></form>
         <div className="quick-test"><span>QUICK TEST</span><button onClick={useSample}>Abraxas public wallet · {short(SAMPLE)}</button></div>{error&&<div className="wallet-error">{error}</div>}
       </section>
