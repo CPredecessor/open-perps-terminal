@@ -1,4 +1,5 @@
 using Npgsql;
+using Microsoft.Extensions.Configuration;
 
 namespace OpenPerps.Shared;
 
