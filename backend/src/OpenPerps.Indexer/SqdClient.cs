@@ -32,18 +32,26 @@ public sealed class SqdClient(HttpClient http, IConfiguration configuration)
         using var response = await http.PostAsJsonAsync($"{_baseUrl}/stream", query, ct);
         response.EnsureSuccessStatusCode();
         await using var stream = await response.Content.ReadAsStreamAsync(ct);
-        using var document = await JsonDocument.ParseAsync(stream, cancellationToken: ct);
-        foreach (var block in document.RootElement.EnumerateArray())
+        using var reader = new StreamReader(stream);
+        while (await reader.ReadLineAsync(ct) is { } line)
         {
-            var number = block.GetProperty("header").GetProperty("number").GetInt64();
-            if (!block.TryGetProperty("fills", out var fills)) continue;
-            foreach (var fill in fills.EnumerateArray())
+            if (string.IsNullOrWhiteSpace(line)) continue;
+            using var document = JsonDocument.Parse(line);
+            var blocks = document.RootElement.ValueKind == JsonValueKind.Array
+                ? document.RootElement.EnumerateArray().ToArray()
+                : new[] { document.RootElement };
+            foreach (var block in blocks)
             {
-                var coin = fill.GetProperty("coin").GetString() ?? "";
-                if (coin.StartsWith('@')) continue;
-                var time = fill.TryGetProperty("time", out var t) ? DateTimeOffset.FromUnixTimeMilliseconds(t.GetInt64()).UtcDateTime : DateTime.UtcNow;
-                yield return new Fill(number, fill.GetProperty("user").GetString()!, coin,
-                    Decimal(fill, "px"), Decimal(fill, "sz"), fill.GetProperty("side").GetString()!, Decimal(fill, "startPosition"), time);
+                var number = block.GetProperty("header").GetProperty("number").GetInt64();
+                if (!block.TryGetProperty("fills", out var fills)) continue;
+                foreach (var fill in fills.EnumerateArray())
+                {
+                    var coin = fill.GetProperty("coin").GetString() ?? "";
+                    if (coin.StartsWith('@')) continue;
+                    var time = fill.TryGetProperty("time", out var t) ? DateTimeOffset.FromUnixTimeMilliseconds(t.GetInt64()).UtcDateTime : DateTime.UtcNow;
+                    yield return new Fill(number, fill.GetProperty("user").GetString()!, coin,
+                        Decimal(fill, "px"), Decimal(fill, "sz"), fill.GetProperty("side").GetString()!, Decimal(fill, "startPosition"), time);
+                }
             }
         }
     }
