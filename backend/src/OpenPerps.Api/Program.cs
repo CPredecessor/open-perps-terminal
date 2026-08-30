@@ -29,21 +29,51 @@ app.MapGet("/api/positioning/overview", async (CancellationToken ct) =>
     await using var connection = new NpgsqlConnection(connectionString);
     await connection.OpenAsync(ct);
     const string sql = """
-      select count(*) filter (where signed_size <> 0) as positions,
-             count(distinct trader) filter (where signed_size <> 0) as traders,
-             coalesce(sum(abs(signed_size) * mark_price) filter (where signed_size > 0), 0) as long_notional,
-             coalesce(sum(abs(signed_size) * mark_price) filter (where signed_size < 0), 0) as short_notional,
-             max(updated_at) as updated_at
-      from current_positions
+      with active as (
+        select trader, signed_size, abs(signed_size) * mark_price as notional, updated_at
+        from current_positions where signed_size <> 0
+      ),
+      per_trader as (
+        select trader,
+          coalesce(sum(notional) filter (where signed_size > 0), 0) as long_notional,
+          coalesce(sum(notional) filter (where signed_size < 0), 0) as short_notional
+        from active group by trader
+      ),
+      ranked as (
+        select *, row_number() over(order by long_notional desc) as long_rank,
+                  row_number() over(order by short_notional desc) as short_rank
+        from per_trader
+      )
+      select
+        (select count(*) from active),
+        (select count(*) from per_trader),
+        coalesce(sum(long_notional), 0),
+        coalesce(sum(short_notional), 0),
+        count(*) filter (where long_notional > 0),
+        count(*) filter (where short_notional > 0),
+        coalesce(sum(long_notional) filter (where long_rank <= 10), 0),
+        coalesce(sum(short_notional) filter (where short_rank <= 10), 0),
+        (select count(*) from active where signed_size > 0),
+        (select count(*) from active where signed_size < 0),
+        (select max(updated_at) from active)
+      from ranked
     """;
     await using var command = new NpgsqlCommand(sql, connection);
     await using var reader = await command.ExecuteReaderAsync(ct);
     await reader.ReadAsync(ct);
+    var longNotional = reader.GetDecimal(2);
+    var shortNotional = reader.GetDecimal(3);
+    var longTraders = reader.GetInt64(4);
+    var shortTraders = reader.GetInt64(5);
     return Results.Ok(new {
-        trackedTraders = reader.GetInt64(1), openPositions = reader.GetInt64(0),
-        longNotional = reader.GetDecimal(2), shortNotional = reader.GetDecimal(3),
-        updatedAt = reader.IsDBNull(4) ? (DateTime?)null : reader.GetDateTime(4),
-        scope = "Hyperliquid traders discovered from SQD fills"
+        openPositions = reader.GetInt64(0), trackedTraders = reader.GetInt64(1),
+        longNotional, shortNotional, longTraders, shortTraders,
+        top10LongNotional = reader.GetDecimal(6), top10ShortNotional = reader.GetDecimal(7),
+        longPositions = reader.GetInt64(8), shortPositions = reader.GetInt64(9),
+        averageLongPerTrader = longTraders == 0 ? 0 : longNotional / longTraders,
+        averageShortPerTrader = shortTraders == 0 ? 0 : shortNotional / shortTraders,
+        updatedAt = reader.IsDBNull(10) ? (DateTime?)null : reader.GetDateTime(10),
+        scope = "OpenPerps active traders discovered from Hyperliquid SQD fills"
     });
 });
 
