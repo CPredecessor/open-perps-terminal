@@ -5,9 +5,26 @@ namespace OpenPerps.Shared;
 
 public static class Database
 {
-    public static string ConnectionString(IConfiguration configuration) =>
-        configuration["DATABASE_URL"] ?? configuration.GetConnectionString("Postgres")
-        ?? throw new InvalidOperationException("DATABASE_URL is required.");
+    public static string ConnectionString(IConfiguration configuration)
+    {
+        var value = configuration["DATABASE_URL"] ?? configuration.GetConnectionString("Postgres")
+            ?? throw new InvalidOperationException("DATABASE_URL is required.");
+
+        if (!value.StartsWith("postgres://", StringComparison.OrdinalIgnoreCase) &&
+            !value.StartsWith("postgresql://", StringComparison.OrdinalIgnoreCase)) return value;
+
+        var uri = new Uri(value);
+        var credentials = uri.UserInfo.Split(':', 2);
+        return new NpgsqlConnectionStringBuilder
+        {
+            Host = uri.Host,
+            Port = uri.IsDefaultPort ? 5432 : uri.Port,
+            Database = uri.AbsolutePath.TrimStart('/'),
+            Username = Uri.UnescapeDataString(credentials[0]),
+            Password = credentials.Length > 1 ? Uri.UnescapeDataString(credentials[1]) : string.Empty,
+            SslMode = SslMode.Prefer
+        }.ConnectionString;
+    }
 
     public static async Task InitializeAsync(string connectionString, CancellationToken ct = default)
     {
