@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: openperps
+      POSTGRES_USER: openperps
+      POSTGRES_PASSWORD: openperps
+    ports: ["5432:5432"]
+    volumes: ["openperps-data:/var/lib/postgresql/data"]
+  api:
+    build: { context: .., dockerfile: backend/Dockerfile.api }
+    environment:
+      DATABASE_URL: Host=postgres;Port=5432;Database=openperps;Username=openperps;Password=openperps
+    ports: ["8080:8080"]
+    depends_on: [postgres]
+  indexer:
+    build: { context: .., dockerfile: backend/Dockerfile.indexer }
+    environment:
+      DATABASE_URL: Host=postgres;Port=5432;Database=openperps;Username=openperps;Password=openperps
+      INDEXER_CHUNK_SIZE: 2000
+    depends_on: [postgres]
+volumes:
+  openperps-data:
