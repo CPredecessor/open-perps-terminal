@@ -260,30 +260,6 @@ const programs=[
     "dateNote": "Start and end explicitly verified"
   },
   {
-    "id": "lighter-core-s2",
-    "name": "Lighter",
-    "mark": "L",
-    "season": "Core · Season 2",
-    "status": "ended",
-    "start": null,
-    "end": "2025-12-26",
-    "weekly": 250000,
-    "weeklyLabel": "Documented historical allocation",
-    "total": null,
-    "totalLabel": "Not verified",
-    "note": "The market-maker documentation explicitly states that Season 2 ended on 26 December 2025. It describes a 250,000-point allocation. This is separate from the Robinhood Chain program.",
-    "rules": "The historical allocation is not presented as a current incentive or a confirmed payout for every week.",
-    "refs": [
-      [
-        "Season end and allocation",
-        "https://docs.lighter.xyz/points-program/market-makers"
-      ]
-    ],
-    "history": [],
-    "checkedAt": "2026-09-29",
-    "dateNote": "End explicitly verified · Start not verified"
-  },
-  {
     "start": "2025-12-17",
     "end": null,
     "weekly": null,
@@ -460,55 +436,6 @@ const programs=[
     "checkedAt": "2026-09-29"
   },
   {
-    "start": "2023-11-01",
-    "end": "2024-05-01",
-    "weekly": 1000000,
-    "total": null,
-    "totalLabel": "No verified season total",
-    "history": [],
-    "id": "hyperliquid-initial",
-    "name": "Hyperliquid",
-    "mark": "H",
-    "season": "Original points program",
-    "status": "ended",
-    "weeklyLabel": "Historical weekly allocation",
-    "note": "The official archive explicitly dates the original program from 1 November 2023 to 1 May 2024. This completed campaign is separate from the later L1 phase.",
-    "rules": "Weekly activity ended on Wednesdays and allocations were distributed on Thursdays.",
-    "dateNote": "Start and end explicitly verified",
-    "refs": [
-      [
-        "Official points archive",
-        "https://hyperliquid.gitbook.io/hyperliquid-docs/points"
-      ]
-    ],
-    "checkedAt": "2026-09-29"
-  },
-  {
-    "start": "2024-05-29",
-    "end": null,
-    "weekly": 700000,
-    "total": null,
-    "totalLabel": "No verified season total",
-    "history": [],
-    "id": "hyperliquid-l1",
-    "name": "Hyperliquid",
-    "mark": "H",
-    "season": "L1 points phase",
-    "status": "ended",
-    "endText": "November 2024 · day unspecified",
-    "weeklyLabel": "Historical weekly allocation",
-    "note": "The official archive confirms the L1 phase began on 29 May 2024 and ended in November 2024. It does not state an exact closing day; neither a token date nor month-end is substituted.",
-    "rules": "The L1 phase had a 700,000-point weekly allocation. Activity from 1–28 May received a multiplier.",
-    "dateNote": "Start verified · End verified to month precision only",
-    "refs": [
-      [
-        "Official L1 phase archive",
-        "https://hyperliquid.gitbook.io/hyperliquid-docs/points"
-      ]
-    ],
-    "checkedAt": "2026-09-29"
-  },
-  {
     "start": "2025-11-24",
     "end": null,
     "weekly": null,
@@ -537,32 +464,7 @@ const programs=[
     "checkedAt": "2026-09-29"
   },
   {
-    "start": null,
-    "end": "2025-06-22",
-    "weekly": null,
-    "total": null,
-    "totalLabel": "No verified season total",
-    "history": [],
-    "id": "aster-s1-rh",
-    "name": "Aster",
-    "mark": "A",
-    "season": "Spectra · Stage 1 Rh",
-    "status": "ended",
-    "endAt": "2025-06-22T23:59:00Z",
-    "weeklyLabel": "Historical Rh points · pool not verified",
-    "note": "The official page explicitly records the end of Stage 1 Rh at 23:59 UTC on 22 June 2025. Its 10 April promotion is not treated as the start of the whole stage. The Au program ended separately and is not merged into this record.",
-    "rules": "Rh rewarded perpetual trading. This archived record does not imply that a newer Aster campaign is active.",
-    "dateNote": "End explicitly verified · Full-stage start not verified",
-    "refs": [
-      [
-        "Official Stage 1 Rh end notice",
-        "https://docs.asterdex.com/stage-1-spectra/aster-spectra-stage-1"
-      ]
-    ],
-    "checkedAt": "2026-09-29"
-  },
-  {
-    "status": "watchlist",
+    "status": "upcoming",
     "start": null,
     "end": null,
     "weekly": null,
@@ -573,11 +475,11 @@ const programs=[
     "checkedAt": "2026-09-29",
     "startText": "Not announced / unverified",
     "dateNote": "Points dates unconfirmed · Exchange launch is not a points launch",
-    "id": "arcus-watchlist",
+    "id": "arcus-upcoming",
     "name": "Arcus",
     "mark": "A",
     "season": "Robinhood Chain · Beta / waitlist",
-    "note": "The official site describes a beta exchange and a cohort-based perps waitlist. No points program announcement was found in the reviewed homepage, blog index or help center. This is a watchlist entry, not a confirmed upcoming points season.",
+    "note": "The official site describes a beta exchange and a cohort-based perps waitlist. No points program announcement was found in the reviewed homepage, blog index or help center. Included under Upcoming for discovery; a future points season is not confirmed.",
     "rules": "Waitlist priority uses prior trading history and referrals. A waitlist rank is not a verified points balance. The site lists 1 July 2026 for Perps Beta; that product date is not used as a points start date.",
     "refs": [
       [
@@ -592,10 +494,11 @@ const programs=[
         "Official help center",
         "https://help.arcus.xyz/"
       ]
-    ]
+    ],
+    "pointsConfirmed": false
   },
   {
-    "status": "watchlist",
+    "status": "upcoming",
     "start": null,
     "end": null,
     "weekly": null,
@@ -606,7 +509,7 @@ const programs=[
     "checkedAt": "2026-09-29",
     "startText": "Not announced / unverified",
     "dateNote": "Points dates unconfirmed · Exchange launch is not a points launch",
-    "id": "noether-watchlist",
+    "id": "noether-upcoming",
     "name": "Noether",
     "mark": "N",
     "season": "Stellar · Testnet",
@@ -617,7 +520,8 @@ const programs=[
         "Official introduction and network status",
         "https://docs.noether.exchange/"
       ]
-    ]
+    ],
+    "pointsConfirmed": false
   }
 ];
 const DAY=86400000;const parseDate=s=>Date.parse(s+'T00:00:00Z');
@@ -626,7 +530,7 @@ const num=n=>new Intl.NumberFormat('en-US').format(n);
 const compact=n=>new Intl.NumberFormat('en-US',{notation:'compact',maximumFractionDigits:2}).format(n);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function endInfo(p,now=Date.now()){
- if(p.status==='watchlist')return null;
+ if(p.status==='upcoming'&&p.pointsConfirmed===false)return null;
  if(p.end)return{date:p.end,ms:p.endAt?Date.parse(p.endAt):parseDate(p.end)+DAY,estimated:false,weeks:p.officialWeeks};
  if(p.endDeadline)return{date:p.endDeadline,ms:parseDate(p.endDeadline)+DAY,estimated:false,deadline:true};
  const anchor=p.start||p.timelineDate;
@@ -638,7 +542,7 @@ function endInfo(p,now=Date.now()){
  return{date:new Date(ms).toISOString().slice(0,10),ms,estimated:true,weeks:blocks*20};
 }
 function timeline(p,now=Date.now()){
- if(p.status==='watchlist')return{label:'No points program confirmed',percent:null,end:null};
+ if(p.status==='upcoming'&&p.pointsConfirmed===false)return{label:'No points program confirmed',percent:null,end:null};
  const anchor=p.start||p.timelineDate, end=endInfo(p,now);
  if(p.status==='review')return{label:'Dates under review',percent:null,end};
  if(end?.deadline)return{label:now>=end.ms?'Deadline passed · recheck':'Official latest end',percent:null,end};
@@ -647,7 +551,7 @@ function timeline(p,now=Date.now()){
 }
 function timelineHTML(p){
  const t=timeline(p),e=t.end;
- if(p.status==='watchlist')return `<div class="timeline-box no-timeline watchlist-box"><div class="timeline-heading"><strong>${esc(t.label)}</strong><span class="time-pill">Watchlist</span></div><div class="timeline-dates"><div><small>Points start</small><strong>Not announced / unverified</strong></div><div><small>Points end</small><strong>Not announced / unverified</strong></div></div><div class="timeline-explainer">Exchange stage: ${esc(p.season)}. No points timeline or reward eligibility is assumed.</div></div>`;
+ if(p.status==='upcoming'&&p.pointsConfirmed===false)return `<div class="timeline-box no-timeline upcoming-box"><div class="timeline-heading"><strong>${esc(t.label)}</strong><span class="time-pill">Upcoming</span></div><div class="timeline-dates"><div><small>Points start</small><strong>Not announced / unverified</strong></div><div><small>Points end</small><strong>Not announced / unverified</strong></div></div><div class="timeline-explainer">Exchange stage: ${esc(p.season)}. No points timeline or reward eligibility is assumed.</div></div>`;
  const dates=`<div class="timeline-dates"><div><small>${p.start?'Started':p.timelineLabel||'Start date'}</small><strong>${startText(p)}</strong></div><div><small>${endLabel(p)}</small><strong>${endText(p)}</strong></div></div><div class="timeline-explainer">${esc(p.dateNote||'')}</div>`;
  if(t.percent!==null){const pc=e.estimated?Math.min(99.9,Math.floor(t.percent*10)/10):Math.round(t.percent);return `<div class="timeline-box ${e.estimated?'projected':''}"><div class="timeline-heading"><strong>${esc(t.label)}${e.weeks?' / '+e.weeks:''}</strong><span class="time-pill">${pc}%${e.estimated?' · Estimated':''}</span></div><div class="track clear-progress" role="progressbar" aria-label="${esc(p.name+' '+p.season+(e.estimated?' estimated timeline progress':' time elapsed'))}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pc}"><span class="fill" style="width:${t.percent}%"></span></div><div class="projection-caption"><span>${e.estimated?t.remaining+' days to projected end':t.remaining?t.remaining+' days left':'Completed'}</span><span>${e.weeks?e.weeks+(e.estimated?'-week target':' weeks · Official'):''}</span></div>${dates}${e.estimated?`<div class="timeline-explainer">${e.weeks?'Rolling 20-week projection':'Source-based estimate'} · Not official${p.timelineDate?' · Based on first weekly drop':''}</div>`:''}${p.officialWeeks?'<div class="timeline-explainer">Official duration · 12:00 UTC start and end</div>':''}</div>`;}
  return `<div class="timeline-box no-timeline"><div class="timeline-heading"><strong>${esc(t.label)}</strong><span class="time-pill">${e?.deadline?'Latest bound':p.status==='ended'?'Ended':'Pending'}</span></div>${dates}<div class="timeline-explainer">${e?.deadline?'Official latest-end window; not a confirmed closing day.':p.status==='active'?'No exact timeline is drawn without verified dates.':'See program details for source notes.'}</div></div>`;
@@ -658,12 +562,12 @@ function endText(p){const e=endInfo(p);return e?(e.deadline?'By ':'')+fmtDate(e.
 function weeklyText(p,format=compact){if(p.weekly===null)return 'Not available';if(p.weeklyMax)return format(p.weekly)+'–'+format(p.weeklyMax);return (p.weeklyQualifier?esc(p.weeklyQualifier)+' ':'')+format(p.weekly);}
 let filter='all';
 const rows=document.getElementById('rows'),search=document.getElementById('search'),sort=document.getElementById('sort'),dialog=document.getElementById('detail');
-const statusLabels={active:'Active',review:'Needs review',ended:'Completed',upcoming:'Upcoming',watchlist:'No points confirmed'};
-function filteredPrograms(){const q=search.value.trim().toLowerCase();const now=Date.now();return programs.filter(p=>{const matches=filter==='all'||p.status===filter||(filter==='ending'&&p.status==='active'&&endInfo(p,now)&&endInfo(p,now).ms>now&&endInfo(p,now).ms-now<=30*DAY);return matches&&`${p.name} ${p.season}`.toLowerCase().includes(q)}).sort((a,b)=>sort.value==='name'?a.name.localeCompare(b.name):sort.value==='start'?(b.start?parseDate(b.start):-Infinity)-(a.start?parseDate(a.start):-Infinity):sort.value==='end'?(endInfo(a,now)?.ms??Infinity)-(endInfo(b,now)?.ms??Infinity):({active:0,upcoming:1,watchlist:2,review:3,ended:4}[a.status]-{active:0,upcoming:1,watchlist:2,review:3,ended:4}[b.status]));}
-function render(){const list=filteredPrograms();document.getElementById('result-count').textContent=list.length;document.getElementById('showing').textContent=`Showing ${list.length} of ${programs.length} entries`;document.getElementById('venue-count').textContent=new Set(programs.map(p=>p.name)).size;document.getElementById('active-count').textContent=programs.filter(p=>p.status==='active').length;rows.innerHTML=list.length?list.map(p=>`<button class="program-row" data-program="${p.id}" aria-label="View ${esc(p.name+' '+p.season)} details"><div class="exchange"><span class="monogram" aria-hidden="true">${p.mark}</span><span><strong>${p.name}</strong><small>${p.season}</small><span class="badge ${p.status}">${statusLabels[p.status]}</span></span></div><div class="timeline">${timelineHTML(p)}</div><div class="weekly"><span class="number ${p.weekly===null?'missing':''}">${weeklyText(p)}</span><span class="sub">${p.weeklyLabel}</span></div><div class="total"><span class="number ${p.total===null?'missing':''}">${p.total===null?'Not available':(p.approx?'≈ ':'')+compact(p.total)}</span><span class="sub">${p.totalLabel}</span></div><span class="chevron" aria-hidden="true">›</span></button>`).join(''):`<div class="empty"><h3>No matching entries.</h3><p>${filter==='ending'?'No active program has an official end, latest-end bound or estimated end within 30 days.':filter==='watchlist'?'No watchlist exchange matches this search.':filter==='upcoming'?'No announced upcoming points program has been verified. See Watchlist for exchanges without a confirmed program.':'Try another exchange or change the status filter.'}</p><button id="reset">Show all programs</button></div>`;rows.querySelectorAll('[data-program]').forEach(b=>b.addEventListener('click',()=>openProgram(b.dataset.program)));document.getElementById('reset')?.addEventListener('click',()=>{search.value='';setFilter('all')});}
+const statusLabels={active:'Active',review:'Needs review',ended:'Completed',upcoming:'Upcoming'};
+function filteredPrograms(){const q=search.value.trim().toLowerCase();const now=Date.now();return programs.filter(p=>{const matches=filter==='all'||p.status===filter||(filter==='ending'&&p.status==='active'&&endInfo(p,now)&&endInfo(p,now).ms>now&&endInfo(p,now).ms-now<=30*DAY);return matches&&`${p.name} ${p.season}`.toLowerCase().includes(q)}).sort((a,b)=>sort.value==='name'?a.name.localeCompare(b.name):sort.value==='start'?(b.start?parseDate(b.start):-Infinity)-(a.start?parseDate(a.start):-Infinity):sort.value==='end'?(endInfo(a,now)?.ms??Infinity)-(endInfo(b,now)?.ms??Infinity):({active:0,upcoming:1,review:2,ended:3}[a.status]-{active:0,upcoming:1,review:2,ended:3}[b.status]));}
+function render(){const list=filteredPrograms();document.getElementById('result-count').textContent=list.length;document.getElementById('showing').textContent=`Showing ${list.length} of ${programs.length} entries`;document.getElementById('venue-count').textContent=new Set(programs.map(p=>p.name)).size;document.getElementById('active-count').textContent=programs.filter(p=>p.status==='active').length;rows.innerHTML=list.length?list.map(p=>`<button class="program-row" data-program="${p.id}" aria-label="View ${esc(p.name+' '+p.season)} details"><div class="exchange"><span class="monogram" aria-hidden="true">${p.mark}</span><span><strong>${p.name}</strong><small>${p.season}</small><span class="badge ${p.status}">${statusLabels[p.status]}</span></span></div><div class="timeline">${timelineHTML(p)}</div><div class="weekly"><span class="number ${p.weekly===null?'missing':''}">${weeklyText(p)}</span><span class="sub">${p.weeklyLabel}</span></div><div class="total"><span class="number ${p.total===null?'missing':''}">${p.total===null?'Not available':(p.approx?'≈ ':'')+compact(p.total)}</span><span class="sub">${p.totalLabel}</span></div><span class="chevron" aria-hidden="true">›</span></button>`).join(''):`<div class="empty"><h3>No matching entries.</h3><p>${filter==='ending'?'No active program has an official end, latest-end bound or estimated end within 30 days.':filter==='upcoming'?'No upcoming entry matches this search.':'Try another exchange or change the status filter.'}</p><button id="reset">Show all programs</button></div>`;rows.querySelectorAll('[data-program]').forEach(b=>b.addEventListener('click',()=>openProgram(b.dataset.program)));document.getElementById('reset')?.addEventListener('click',()=>{search.value='';setFilter('all')});}
 function setFilter(value){filter=value;document.querySelectorAll('[data-filter]').forEach(b=>{b.classList.toggle('selected',b.dataset.filter===value);b.setAttribute('aria-pressed',String(b.dataset.filter===value))});render();}
 function showDialog(){if(!dialog.open)dialog.showModal();}
 function openProgram(id){const p=programs.find(x=>x.id===id);if(!p)throw new Error('Unknown program');document.getElementById('dialog-content').innerHTML=`<div class="eyebrow">PROGRAM DETAILS · CHECKED ${fmtDate(CHECKED)}</div><div class="detail-head"><span class="monogram">${p.mark}</span><div><h2 id="dialog-title">${p.name}</h2><p>${p.season} <span class="badge ${p.status}">${statusLabels[p.status]}</span></p></div></div><div class="detail-timeline">${timelineHTML(p)}</div><div class="detail-grid"><div><small>${p.timelineDate?'First weekly drop':'Start date'}</small><strong>${startText(p)}</strong></div><div><small>${endLabel(p)}</small><strong>${endText(p)}</strong></div><div><small>${p.weeklyLabel}</small><strong>${weeklyText(p,num)}</strong></div><div><small>${p.totalLabel}</small><strong>${p.total===null?'Not available':(p.approx?'≈ ':'')+num(p.total)}</strong></div></div><div class="note ${p.status==='review'?'review':''}">${p.note}</div><h3>Program notes</h3><p>${p.rules}</p><h3>Distribution history</h3>${p.history.length?`<p class="history-note">${p.history.length} verified announcements · ${num(p.history.reduce((sum,r)=>sum+r.amount,0))} points recorded. Partial coverage; not the full program total. Exact distribution dates are not verified here, so records use their announcement IDs.</p>${p.history.map(r=>`<div class="history-row"><a href="${r.url}" target="_blank" rel="noopener noreferrer">${r.label}</a><div class="track"><span class="fill" style="width:${r.amount/Math.max(...p.history.map(x=>x.amount))*100}%"></span></div><strong>${num(r.amount)}</strong></div>`).join('')}`:'<p>No individual weekly distributions are recorded for this program. An announced weekly pool is not a substitute for actual distribution history.</p>'}<h3>Official sources</h3><ul class="source-list">${p.refs.map(([label,url])=>`<li><a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a></li>`).join('')}</ul><p class="history-note">Research snapshot: ${fmtDate(CHECKED)}. Program facts do not refresh automatically. Elapsed time is calculated from known dates. Program points are not comparable monetary units.</p>`;showDialog();}
-function openMethod(){document.getElementById('dialog-content').innerHTML=`<div class="eyebrow">ABOUT THE DATA</div><h2 id="dialog-title">Clarity over false precision.</h2><p>Openpers is an independent directory of perpetual exchange points programs. This first edition is a curated research snapshot dated ${fmtDate(CHECKED)}.</p><h3>What the labels mean</h3><ul><li><strong>Active:</strong> the reviewed documentation or recent official announcements describe an ongoing program.</li><li><strong>Upcoming:</strong> an officially announced points program that has not started.</li><li><strong>Watchlist / No points confirmed:</strong> an exchange to follow, with no points launch established from the reviewed sources. This does not promise a future program. Exchange beta and mainnet dates are separate from points dates.</li><li><strong>Needs review:</strong> dates or current status cannot be reconciled, or the live source could not be retrieved.</li><li><strong>Completed:</strong> an official source explicitly records the season end.</li><li><strong>Weekly cap / announced pool:</strong> a program parameter, not a recorded payment.</li><li><strong>Partial total:</strong> the sum of only the distributions collected here.</li></ul><h3>How time is calculated</h3><p>Dates use UTC. Week 1 starts on the listed start date; elapsed weeks are calendar calculations, not official epoch numbers. Progress uses exact UTC times where supplied; date-only official ends include the final day. Progress is capped at 100%. Official exact end dates take priority. Official latest-end windows are shown as bounds without a progress bar; an elapsed bound does not prove completion. Partial dates keep their published precision. Otherwise, a future source-backed estimate is used when recorded. With no such estimate, active programs with a known timeline anchor use the first future 20-week boundary: 20, 40, 60 weeks and so on. At each boundary the target rolls forward by 20 weeks and the percentage falls accordingly. These are planning projections, not exchange announcements. Estimated boundaries occur at 00:00 UTC on the displayed date. Programs without a known start or timeline anchor cannot be projected. Lighter Robinhood Chain uses its first weekly drop as the timeline anchor, separately from the terms effective date.</p><h3>What updates automatically?</h3><p>Elapsed time and rolling projections update while this page is open. Source facts and distributions are curated and do not update automatically. Old sources can remain online after a program changes; ambiguous entries stay under review.</p><h3>Coverage</h3><p>This edition covers ${new Set(programs.map(p=>p.name)).size} exchanges and ${programs.filter(p=>p.status!=='watchlist').length} program records and ${programs.filter(p=>p.status==='watchlist').length} watchlist entries. It is not an exhaustive market list. Missing official dates stay unknown; clearly labeled projections may supplement them. Missing payouts remain unavailable. Point totals are never added across exchanges.</p>`;showDialog();}
+function openMethod(){document.getElementById('dialog-content').innerHTML=`<div class="eyebrow">ABOUT THE DATA</div><h2 id="dialog-title">Clarity over false precision.</h2><p>Openpers is an independent directory of perpetual exchange points programs. This first edition is a curated research snapshot dated ${fmtDate(CHECKED)}.</p><h3>What the labels mean</h3><ul><li><strong>Active:</strong> the reviewed documentation or recent official announcements describe an ongoing program.</li><li><strong>Upcoming:</strong> future programs and early exchanges to follow. Entries labeled No points program confirmed have no verified points launch and do not promise future rewards. Exchange beta and mainnet dates are separate from points dates.</li><li><strong>Needs review:</strong> dates or current status cannot be reconciled, or the live source could not be retrieved.</li><li><strong>Completed:</strong> an official source explicitly records the season end.</li><li><strong>Weekly cap / announced pool:</strong> a program parameter, not a recorded payment.</li><li><strong>Partial total:</strong> the sum of only the distributions collected here.</li></ul><h3>How time is calculated</h3><p>Dates use UTC. Week 1 starts on the listed start date; elapsed weeks are calendar calculations, not official epoch numbers. Progress uses exact UTC times where supplied; date-only official ends include the final day. Progress is capped at 100%. Official exact end dates take priority. Official latest-end windows are shown as bounds without a progress bar; an elapsed bound does not prove completion. Partial dates keep their published precision. Otherwise, a future source-backed estimate is used when recorded. With no such estimate, active programs with a known timeline anchor use the first future 20-week boundary: 20, 40, 60 weeks and so on. At each boundary the target rolls forward by 20 weeks and the percentage falls accordingly. These are planning projections, not exchange announcements. Estimated boundaries occur at 00:00 UTC on the displayed date. Programs without a known start or timeline anchor cannot be projected. Lighter Robinhood Chain uses its first weekly drop as the timeline anchor, separately from the terms effective date.</p><h3>What updates automatically?</h3><p>Elapsed time and rolling projections update while this page is open. Source facts and distributions are curated and do not update automatically. Old sources can remain online after a program changes; ambiguous entries stay under review.</p><h3>Coverage</h3><p>This edition covers ${new Set(programs.map(p=>p.name)).size} exchanges and ${programs.length} entries. Programs known to have ended before 1 January 2026 are excluded. It is not an exhaustive market list. Missing official dates stay unknown; clearly labeled projections may supplement them. Missing payouts remain unavailable. Point totals are never added across exchanges.</p>`;showDialog();}
 document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>setFilter(b.dataset.filter)));search.addEventListener('input',render);sort.addEventListener('change',render);document.getElementById('method-btn').addEventListener('click',openMethod);document.getElementById('footer-method').addEventListener('click',openMethod);document.querySelector('.close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});render();setInterval(render,60000);
-if(document.modelContext?.registerTool){try{Promise.resolve(document.modelContext.registerTool({name:'filter_points_programs',title:'Filter points programs',description:'Filter the visible Openpers program list by exchange name and program status.',inputSchema:{type:'object',properties:{query:{type:'string'},status:{type:'string',enum:['all','active','upcoming','watchlist','ending','ended','review']}},additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute(input){if(!input||typeof input!=='object'||Object.keys(input).some(k=>!['query','status'].includes(k))||(input.query!==undefined&&typeof input.query!=='string')||(input.status!==undefined&&!['all','active','upcoming','watchlist','ending','ended','review'].includes(input.status)))throw new Error('Invalid filter');search.value=input.query??'';setFilter(input.status??'all');return{count:filteredPrograms().length,programs:filteredPrograms().map(p=>({id:p.id,name:p.name,season:p.season,status:p.status}))}}})).catch(()=>{});}catch{}}
+if(document.modelContext?.registerTool){try{Promise.resolve(document.modelContext.registerTool({name:'filter_points_programs',title:'Filter points programs',description:'Filter the visible Openpers program list by exchange name and program status.',inputSchema:{type:'object',properties:{query:{type:'string'},status:{type:'string',enum:['all','active','upcoming','ending','ended','review']}},additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute(input){if(!input||typeof input!=='object'||Object.keys(input).some(k=>!['query','status'].includes(k))||(input.query!==undefined&&typeof input.query!=='string')||(input.status!==undefined&&!['all','active','upcoming','ending','ended','review'].includes(input.status)))throw new Error('Invalid filter');search.value=input.query??'';setFilter(input.status??'all');return{count:filteredPrograms().length,programs:filteredPrograms().map(p=>({id:p.id,name:p.name,season:p.season,status:p.status}))}}})).catch(()=>{});}catch{}}

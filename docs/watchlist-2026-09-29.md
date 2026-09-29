@@ -1,5 +1,9 @@
 # Pre-points watchlist — 29 September 2026
 
+## Display update
+
+At the user's request, Arcus and Noether now appear under **Upcoming**, retaining the visible **No points program confirmed** caveat. The separate Watchlist filter was removed. Records known to have ended before 1 January 2026 were removed from the app dataset: Lighter Core Season 2, both Hyperliquid points phases and Aster Spectra Stage 1 Rh. Current coverage is 17 exchanges and 19 entries (13 active, 2 upcoming, 2 completed in 2026, 2 needing review). The research notes below describe the original verification pass; historical source documentation is retained for reference.
+
 Added two discovery entries, separate from confirmed points programs. Coverage is now 19 exchanges, 21 program records and 2 watchlist entries; the active program count remains 13.
 
 | Exchange | Verified product stage | Points status | Sources checked |

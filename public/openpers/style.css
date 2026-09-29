@@ -5,4 +5,4 @@
 
 .projected .time-pill{background:#f4e5cc;color:#78592b}.projection-caption{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:#5c7051;margin-top:8px}.projected .timeline-dates>div:last-child strong{color:#78592b}.timeline-heading{flex-wrap:wrap}
 
-.badge.watchlist{background:#e4eaf2;color:#415e7c}.watchlist-box{border-color:#d8e0e9}.watchlist-box .time-pill{background:#e4eaf2;color:#415e7c}
+.badge.upcoming{background:#e4eaf2;color:#415e7c}.upcoming-box{border-color:#d8e0e9}.upcoming-box .time-pill{background:#e4eaf2;color:#415e7c}
