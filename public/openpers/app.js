@@ -158,34 +158,6 @@ const programs=[
     "dateNote": "Start verified · Official end is TBD; projection only"
   },
   {
-    "id": "grvt-s2",
-    "name": "GRVT",
-    "mark": "G",
-    "season": "Rewards Season 2",
-    "status": "review",
-    "start": null,
-    "end": null,
-    "weekly": null,
-    "weeklyLabel": "Volume-based pool",
-    "total": null,
-    "totalLabel": "Not verified",
-    "note": "The help article is still titled “Live”, while a separate announcement targeted TGE for June 2026 and later references July updates. The current season status and exact end date need reconciliation; this is not marked active.",
-    "rules": "The Season 2 guide describes variable weekly pools, Tuesday distributions, and rewards for trading, deposits and referrals. Examples in the guide are not actual weekly payouts.",
-    "refs": [
-      [
-        "Season 2 rules",
-        "https://help.grvt.io/en/articles/12332040-live-rewards-season-2-0"
-      ],
-      [
-        "Token timeline and extension",
-        "https://grvt.io/blog/introducing-grvt-token/"
-      ]
-    ],
-    "history": [],
-    "checkedAt": "2026-09-29",
-    "dateNote": "Article date is not launch proof · Exact season dates unresolved"
-  },
-  {
     "id": "pacifica",
     "name": "Pacifica",
     "mark": "≈",
@@ -209,30 +181,6 @@ const programs=[
     "startText": "4 September · year unconfirmed",
     "dateNote": "Official day/month only · Year and end not verified",
     "checkedAt": "2026-09-29"
-  },
-  {
-    "id": "edgex",
-    "name": "edgeX",
-    "mark": "e",
-    "season": "Pre-TGE · XP",
-    "status": "review",
-    "start": null,
-    "end": null,
-    "weekly": null,
-    "weeklyLabel": "Weekly · amount unavailable",
-    "total": null,
-    "totalLabel": "Not verified",
-    "note": "The February documentation expected the program to finish before TGE, no later than 31 March 2026. This is a historical target, not a confirmed actual end date. No active season is inferred from this old page.",
-    "rules": "The pre-TGE program used weekly XP rewards. A token allocation is not a points total; it is not counted as distributed XP.",
-    "refs": [
-      [
-        "Pre-TGE program documentation",
-        "https://edgexhelp.zendesk.com/hc/en-001/articles/15167586880271-XP-Pre-TGE-Season"
-      ]
-    ],
-    "history": [],
-    "checkedAt": "2026-09-29",
-    "dateNote": "Old TGE target is not a verified season end"
   },
   {
     "id": "paradex-s2",
