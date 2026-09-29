@@ -54,6 +54,20 @@ test('missing metrics are distinct from zero and venue scopes remain separate', 
   assert.equal(api.programs.find(p=>p.name==='Ethereal').status,'review');
 });
 
+test('elapsed weeks use UTC anchors without estimating an end', () => {
+  const p={status:'active',start:'2026-06-10',startAt:'2026-06-10T12:00:00Z'};
+  assert.equal(api.timeline(p,Date.parse('2026-06-10T11:59:59Z')).weekLabel,'Not started');
+  assert.equal(api.timeline(p,Date.parse('2026-06-17T11:59:59Z')).weekLabel,'Week 1');
+  assert.equal(api.timeline(p,Date.parse('2026-06-17T12:00:00Z')).weekLabel,'Week 2');
+  const now=Date.parse('2026-09-29T12:00:00Z');
+  assert.equal(api.timeline(p,now).weekLabel,'Week 16');
+  assert.equal(api.timeline({status:'active',timelineDate:'2026-08-21'},now).weekLabel,'Week 6 since first drop');
+  assert.equal(api.timeline({status:'active'},now).weekLabel,null);
+  assert.equal(api.timeline({...p,status:'review'},now).weekLabel,null);
+  assert.equal(api.timeline(p,now).percent,50);
+  assert.equal(api.timeline(p,now).end,null);
+});
+
 test('weekly ranges and limits keep their meaning', () => {
   assert.equal(api.weeklyText({weekly:300000,weeklyMax:950000}), '300K–950K');
   assert.equal(api.weeklyText({weekly:600000,weeklyQualifier:'≤'}), '≤ 600K');

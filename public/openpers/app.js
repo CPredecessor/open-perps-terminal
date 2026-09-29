@@ -648,7 +648,11 @@ function endInfo(p){
 function timeline(p,now=Date.now()){
  if(p.status==='upcoming'&&p.pointsConfirmed===false)return{label:'No points program confirmed',percent:null,end:null};
  const anchor=p.start||p.timelineDate,end=endInfo(p);
- if(!end)return{label:p.endDeadline&&now>=parseDate(p.endDeadline)+DAY?'End window passed · recheck':'End date unknown',percent:50,placeholder:true,end:null};
+ if(!end){
+  const start=anchor?(p.startAt?Date.parse(p.startAt):parseDate(anchor)):null;
+  const weekLabel=p.status==='active'&&Number.isFinite(start)?(now<start?'Not started':'Week '+(Math.floor((now-start)/DAY/7)+1)+(p.timelineDate&&!p.start?' since first drop':'')):null;
+  return{label:p.endDeadline&&now>=parseDate(p.endDeadline)+DAY?'End window passed · recheck':'End date unknown',weekLabel,percent:50,placeholder:true,end:null};
+ }
  if(anchor){const start=p.startAt?Date.parse(p.startAt):parseDate(anchor),elapsed=Math.max(0,now-start);return{label:now<start?'Not started':now>=end.ms?'Season completed':'Week '+(Math.floor(elapsed/DAY/7)+1),percent:Math.max(0,Math.min(100,elapsed/(end.ms-start)*100)),end,remaining:Math.max(0,Math.ceil((end.ms-now)/DAY))};}
  return{label:'Start date unknown',percent:null,end};
 }
@@ -656,7 +660,7 @@ function timelineHTML(p){
  const t=timeline(p),e=t.end;
  if(p.status==='upcoming'&&p.pointsConfirmed===false)return '<div class="timeline-box no-timeline upcoming-box"><div class="timeline-heading"><strong>No points program confirmed</strong><span class="time-pill">Upcoming</span></div><div class="timeline-explainer">Points start and end unannounced / unverified. Exchange launch does not establish points eligibility.</div></div>';
  const dates='<div class="timeline-dates"><div><small>'+esc(p.start?'Started':p.timelineLabel||'Start date')+'</small><strong>'+startText(p)+'</strong></div><div><small>End date</small><strong>'+endText(p)+'</strong></div></div><div class="timeline-explainer">'+esc(p.dateNote||'')+'</div>';
- if(t.placeholder)return '<div class="timeline-box unknown-end"><div class="timeline-heading"><strong>'+esc(t.label)+'</strong><span class="time-pill">Unknown</span></div><div class="track clear-progress" aria-hidden="true"><span class="fill" style="width:50%"></span></div><div class="timeline-explainer">Fixed indicator · not elapsed progress</div>'+dates+'</div>';
+ if(t.placeholder)return '<div class="timeline-box unknown-end"><div class="timeline-heading"><strong>'+esc(t.weekLabel||t.label)+'</strong><span class="time-pill">End unknown</span></div><div class="track clear-progress" aria-hidden="true"><span class="fill" style="width:50%"></span></div><div class="timeline-explainer">'+esc(t.label)+' · Fixed half-bar</div>'+dates+'</div>';
  const progress=t.percent===null?'':'<div class="track clear-progress" role="progressbar" aria-label="'+esc(p.name+' time elapsed')+'" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+Math.round(t.percent)+'"><span class="fill" style="width:'+t.percent+'%"></span></div><div class="projection-caption">'+(t.remaining?t.remaining+' days left':'Completed')+'</div>';
  return '<div class="timeline-box"><div class="timeline-heading"><strong>'+esc(t.label)+(e?.weeks?' / '+e.weeks:'')+'</strong><span class="time-pill">'+(t.percent===null?'Unknown':Math.round(t.percent)+'%')+'</span></div>'+progress+dates+'</div>';
 }
