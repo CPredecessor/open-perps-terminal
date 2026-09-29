@@ -10,3 +10,5 @@
 /* Funding and scoped market snapshots */
 .page{max-width:1800px}.market-caption{font-size:12px;color:var(--muted);margin:0 0 14px}.table-scroll{overflow-x:auto}.list-head,.program-row{grid-template-columns:175px minmax(280px,1.7fr) repeat(5,minmax(115px,1fr)) 16px;gap:18px;min-width:1290px}.metric .number{white-space:nowrap}.unknown-end .fill{background:#93a28b}.unknown-end .time-pill{background:#e3e7df;color:#596654}.unknown-end{background:#f0f3eb}.detail-grid strong{overflow-wrap:anywhere}
 @media(max-width:760px){.table-scroll{overflow:visible}.program-row{min-width:0;grid-template-columns:1fr 1fr;gap:18px}.list-head{display:none}.metric:before{display:block;font-size:10px;letter-spacing:1px;color:var(--muted);margin-bottom:5px}.funding:before{content:'FUNDING · USD'}.volume:before{content:'PERP VOLUME · 24H'}.oi:before{content:'OPEN INTEREST · USD'}.metric{min-width:0}.metric .number{white-space:normal}}
+
+.estimate-label{color:#865b30;font-weight:600}

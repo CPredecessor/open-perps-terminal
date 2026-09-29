@@ -4,7 +4,21 @@ import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 
 const source = readFileSync(new URL('../public/openpers/app.js', import.meta.url), 'utf8');
-const api = vm.runInNewContext(source.slice(0, source.indexOf("let filter='all'")) + '\n({programs,endInfo,timeline,timelineHTML,startText,endText,weeklyText,usd,venueMetrics,metricCells})');
+const api = vm.runInNewContext(source.slice(0, source.indexOf("let filter='all'")) + '\n({programs,endInfo,timeline,timelineHTML,startText,endText,weeklyText,usd,venueMetrics,metricCells,totalInfo})');
+
+test('estimated totals preserve official totals, whole weeks, ranges and season boundaries', () => {
+  const p={status:'active',start:'2026-09-01',weekly:100,total:null};
+  const now=Date.parse('2026-09-29T00:00:00Z');
+  assert.equal(api.totalInfo(p,now).text,'≈ 400');
+  assert.equal(api.totalInfo(p,Date.parse('2026-09-07')).weeks,0);
+  assert.equal(api.totalInfo({...p,weeklyMax:200},now).text,'≈ 400–800');
+  assert.equal(api.totalInfo({...p,weeklyQualifier:'≤'},now).text,'≈ ≤ 400');
+  assert.equal(api.totalInfo({...p,total:350,totalLabel:'Official total'},now).text,'350');
+  assert.equal(api.totalInfo({...p,total:150,totalLabel:'Partial history'},now).estimated,true);
+  assert.equal(api.totalInfo({...p,status:'ended',end:'2026-09-14'},now).text,'≈ 200');
+  assert.equal(api.totalInfo({...p,start:null},now).text,'Not available');
+  assert.equal(api.totalInfo({...p,weekly:null},now).text,'Not available');
+});
 
 test('latest-end bounds never imply an exact completion or progress percentage', () => {
   const p = {status:'active', start:'2025-12-17', endDeadline:'2026-12-31'};
