@@ -1,70 +1,36 @@
-# Open Perps Terminal
+# Openpers — Points explorer
 
-Open-source perpetual DEX intelligence for Hyperliquid and Lighter. The project normalizes public market data into one fast, transparent screener.
+Track perpetual DEX points programs, season timelines, official sources and recorded distributions. The light green Points explorer is the project's only active interface.
 
-> Public MVP: the dashboard currently ships with a representative fallback snapshot while `/api/markets` connects to public protocol endpoints. The UI will switch fully to normalized live responses after response fixtures and schema tests are locked down.
+## Local preview
 
-## Features
+Install Node.js 22.13 or newer, then run:
 
-- Hyperliquid and Lighter comparison cards
-- Perpetual market screener with search, venue filtering and sorting
-- Watchlist interaction
-- Read-only wallet analysis across Hyperliquid, Lighter Mainnet and Lighter on Robinhood Chain
-- Normalized collateral, exposure, PnL, activity and open-position views
-- Normalized read-only market-data API
-- Independent, failure-tolerant protocol adapters
-- Responsive terminal interface
-- No wallet connection, custody or private keys
-
-## Stack
-
-- Next.js / React / TypeScript
-- Vinext for Cloudflare-compatible output
-- Public Hyperliquid and Lighter APIs
-- Apache-2.0 license
-
-## Run locally
-
-```bash
-npm ci
+```sh
 npm run dev
 ```
 
-Production validation:
+Open http://127.0.0.1:5173/. No dependencies, database or credentials are needed. The previous `/openpers/index.html` preview link redirects to the home page.
 
-```bash
+## Validate and build
+
+```sh
 npm run lint
 npm test
+npm run build
 ```
 
-## API
+The build copies the three static site files to `dist/`, ready for static hosting. It does not publish them.
 
-`GET /api/markets` returns:
+## Source and data
 
-```json
-{
-  "generatedAt": "2026-08-22T00:00:00.000Z",
-  "partial": false,
-  "venues": [{ "venue": "Hyperliquid", "ok": true }],
-  "markets": [{ "symbol": "BTC", "venue": "Hyperliquid", "price": 117842 }]
-}
-```
+- `public/openpers/index.html`: page structure.
+- `public/openpers/style.css`: responsive light green design.
+- `public/openpers/app.js`: program records, sources, filters, details and timelines.
+- `scripts/serve.mjs`: local preview at the root URL.
 
-Provider failures are isolated. If one protocol is unavailable, the endpoint marks the response as partial and still returns data from healthy adapters.
+The current data is a research snapshot from 29 September 2026, not a live market feed. Elapsed time updates in the browser. Missing facts remain unavailable; rolling 20-week projections are labeled Estimated / Not official. Recorded distribution totals may cover only part of a program's history. See `public/openpers/README.md` for details.
 
-`GET /api/wallet?address=0x...` queries the same public address independently on Hyperliquid, Lighter Mainnet and Lighter's Robinhood deployment. Each provider has a bounded deadline, so one slow venue cannot hold the full analysis open.
+The older trading terminal, wallet analysis, market adapters and .NET backend have been retired. They remain recoverable from Git history. The separately hosted Openpers edition is not automatically synchronized with this repository.
 
-## Add a DEX
-
-Create an adapter in `lib/adapters`, map the provider response to `NormalizedMarket`, return a `VenueResult`, then register it in `app/api/markets/route.ts`. Adapters must be read-only and must not request user credentials.
-
-See [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md) and the [Apache-2.0 license](LICENSE).
-
-## Data sources
-
-- [Hyperliquid Info endpoint](https://hyperliquid.gitbook.io/hyperliquid-docs/for-developers/api/info-endpoint)
-- [Lighter orderBooks endpoint](https://apidocs.lighter.xyz/reference/orderbooks)
-- [Lighter account endpoint](https://apidocs.lighter.xyz/reference/account-1)
-- [Lighter on Robinhood Chain points](https://docs.lighter.xyz/points-program/lighter-on-robinhood-chain-points)
-
-Market data is informational and may be delayed or incomplete. Nothing in this project is financial advice.
+Apache-2.0 license. Independent research; not affiliated with the exchanges.

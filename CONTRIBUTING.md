@@ -1,23 +1,7 @@
-# Contributing to Open Perps Terminal
+# Contributing to Openpers
 
-Thanks for helping build transparent perpetual-market infrastructure.
+Use Node.js 22.13 or newer and run `npm run dev` to open the Points explorer locally. No dependency installation is required.
 
-## Local setup
+Edit the site in `public/openpers`. Keep official sources alongside program records. Distinguish announced pools from actual distributions, label projections clearly, and leave unverifiable dates or totals unavailable. Preserve keyboard access, filters and responsive layouts.
 
-1. Install Node.js 22 or newer.
-2. Run `npm ci`.
-3. Run `npm run dev`.
-4. Open the local URL printed by the development server.
-
-Before opening a pull request, run `npm run lint` and `npm test`.
-
-## Ways to contribute
-
-- Add a protocol adapter under `lib/adapters`.
-- Improve normalization and symbol matching.
-- Add tests for unusual API responses.
-- Improve accessibility, responsive behavior or documentation.
-
-Keep pull requests focused. New adapters must use public/read-only endpoints, return normalized markets, handle provider errors without crashing the whole API and never require wallet keys.
-
-Use Conventional Commit-style titles such as `feat: add drift adapter` or `fix: normalize lighter symbols`.
+Before submitting changes, run `npm run lint`, `npm test` and `npm run build`. Check the affected view in the browser. Never add wallet keys or credentials.

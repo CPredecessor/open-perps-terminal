@@ -1,6 +1,6 @@
 node_modules/
 dist/
-.next/
+.npm-cache/
 .sites-runtime/
 .wrangler/
 .env
