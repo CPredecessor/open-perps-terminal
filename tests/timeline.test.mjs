@@ -62,6 +62,8 @@ test('elapsed weeks use UTC anchors without estimating an end', () => {
   const now=Date.parse('2026-09-29T12:00:00Z');
   assert.equal(api.timeline(p,now).weekLabel,'Week 16');
   assert.equal(api.timeline({status:'active',timelineDate:'2026-08-21'},now).weekLabel,'Week 6 since first drop');
+  assert.equal(api.timeline({status:'active',timelineDate:'2025-03-03',weekSuffix:'since reported launch'},now).weekLabel,'Week 83 since reported launch');
+  assert.equal(api.timeline({status:'upcoming',pointsConfirmed:true,timelineDate:'2026-09-26'},now).weekLabel,null);
   assert.equal(api.timeline({status:'active'},now).weekLabel,null);
   assert.equal(api.timeline({...p,status:'review'},now).weekLabel,null);
   assert.equal(api.timeline(p,now).percent,50);
