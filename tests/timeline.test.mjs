@@ -4,27 +4,54 @@ import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 
 const source = readFileSync(new URL('../public/openpers/app.js', import.meta.url), 'utf8');
-const api = vm.runInNewContext(source.slice(0, source.indexOf("let filter='all'")) + '\n({programs,endInfo,timeline,timelineHTML,startText,endText,weeklyText})');
+const api = vm.runInNewContext(source.slice(0, source.indexOf("let filter='all'")) + '\n({programs,endInfo,timeline,timelineHTML,startText,endText,weeklyText,usd,venueMetrics,metricCells})');
 
 test('latest-end bounds never imply an exact completion or progress percentage', () => {
   const p = {status:'active', start:'2025-12-17', endDeadline:'2026-12-31'};
   const before = api.timeline(p, Date.parse('2026-09-29T00:00:00Z'));
   const after = api.timeline(p, Date.parse('2027-01-02T00:00:00Z'));
-  assert.equal(before.percent, null);
-  assert.equal(after.percent, null);
-  assert.equal(after.label, 'Deadline passed · recheck');
-  assert.equal(api.endInfo(p).estimated, false);
-  assert.match(api.endText(p), /^By /);
+  assert.equal(before.percent, 50);
+  assert.equal(after.percent, 50);
+  assert.equal(before.placeholder, true);
+  assert.equal(after.label, 'End window passed · recheck');
+  assert.equal(api.endInfo(p), null);
+  assert.equal(api.endText(p), 'End date unknown');
+  assert.doesNotMatch(api.timelineHTML(p), /role="progressbar"|aria-valuenow/);
 });
 
 test('partial dates remain partial and cannot create invented timelines', () => {
   const p = {status:'active', startText:'4 September · year unconfirmed'};
   assert.equal(api.endInfo(p), null);
-  assert.equal(api.timeline(p).percent, null);
+  assert.equal(api.timeline(p).percent, 50);
   assert.equal(api.startText(p), p.startText);
   const ended = {status:'ended', start:'2024-05-29', endText:'November 2024 · day unspecified'};
   assert.equal(api.endInfo(ended), null);
   assert.equal(api.endText(ended), ended.endText);
+});
+
+test('unknown ends never roll forward while official durations retain actual progress', () => {
+  const unknown={status:'active',start:'2025-01-01'};
+  for(const date of ['2026-09-29','2028-01-01']){
+    const t=api.timeline(unknown,Date.parse(date));
+    assert.equal(t.percent,50);
+    assert.equal(t.end,null);
+    assert.equal(t.placeholder,true);
+  }
+  const official={status:'active',start:'2026-09-01',startAt:'2026-09-01T12:00:00Z',end:'2027-01-19',endAt:'2027-01-19T12:00:00Z'};
+  assert.equal(api.timeline(official,Date.parse('2026-11-10T12:00:00Z')).percent,50);
+  assert.equal(api.timeline(official,Date.parse('2027-01-20')).percent,100);
+  assert.match(api.timelineHTML(official),/role="progressbar"/);
+});
+
+test('missing metrics are distinct from zero and venue scopes remain separate', () => {
+  assert.equal(api.usd(null),'Not available');
+  assert.equal(api.usd(undefined),'Not available');
+  assert.equal(api.usd(0),'$0');
+  assert.equal(api.venueMetrics.Lighter.slug,'lighter-robinhood-perps');
+  assert.equal(api.venueMetrics.Paradex.slug,'paradex-perps');
+  assert.equal(api.venueMetrics.Pacifica.funding,null);
+  assert.match(api.metricCells({name:'Pacifica'}),/Self-funded/);
+  assert.equal(api.programs.find(p=>p.name==='Ethereal').status,'review');
 });
 
 test('weekly ranges and limits keep their meaning', () => {

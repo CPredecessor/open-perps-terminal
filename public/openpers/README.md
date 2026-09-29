@@ -18,7 +18,9 @@ Open http://localhost:8080. No build or dependencies required. The Node.js previ
 - `style.css`: responsive light green theme and timeline styles.
 - `app.js`: curated program records, sources, search, filters, details and date calculations.
 
-Data is a 29 September 2026 research snapshot, not a live API feed. Elapsed time updates in the browser. Official ends take priority, followed by a recorded future source-backed estimate. Otherwise active programs with a known start or timeline anchor use rolling 20-week projections (20, 40, 60 weeks, etc.). At the boundary the target advances. All projections and percentages are labeled Estimated / Not official. Programs with unknown starts are not projected. Lighter Robinhood Chain is anchored to its first weekly drop (21 August), with the terms effective date shown separately. Recorded distributions are partial coverage, not lifetime totals.
+Data is a 29 September 2026 research snapshot, not a live API feed. Exact official dates determine progress. Without an exact end, a decorative 50% bar says End date unknown; no end dates are estimated. Official latest-end windows remain notes only. Unconfirmed Upcoming exchanges do not get a points timeline.
+
+The app includes funding, reported 24h perpetual volume and USD open interest. Each venue has explicit source URLs, capture dates and scope. Individual funding rounds are distinguished from cumulative totals; parent-company funding is excluded. Market data is not synchronized or live. Lighter covers Robinhood Chain only, and Paradex excludes options. See `docs/market-research-2026-09-29.md`.
 
 This is the only active application in the repository. The old terminal and backend are recoverable from Git history. Subsequent edits on the separately hosted Openpers Site are not automatically synchronized to GitHub.
 

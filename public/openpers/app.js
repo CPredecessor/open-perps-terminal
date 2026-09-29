@@ -13,7 +13,7 @@ const programs=[
     "weeklyLabel": "Announced pool · Wednesdays",
     "total": null,
     "totalLabel": "No verified season total",
-    "note": "Season One launched on 10 June 2026. The official rules specify a weekly pool of 50,000 Perpl Points but no season end date. The timeline uses an estimated rolling 20-week target, not an official duration. Individual weekly payouts and the cumulative distributed total have not been collected.",
+    "note": "Season One launched on 10 June 2026. The official rules specify a weekly pool of 50,000 Perpl Points but no season end date. Individual weekly payouts and the cumulative distributed total have not been collected.",
     "rules": "Points recognize organic trading, referrals and bonus activities; PLP participation is listed as coming soon. Referrer and referee each receive a 5% bonus on the referee's trading points. Activity is captured on Wednesdays and points are credited within 48 hours. Criteria and weights may change. Perpl Points are separate from mPoints.",
     "refs": [
       [
@@ -27,7 +27,7 @@ const programs=[
     ],
     "history": [],
     "checkedAt": "2026-09-29",
-    "dateNote": "Start verified · End not announced; projection only"
+    "dateNote": "Start verified · End not announced"
   },
   {
     "id": "sodex-s2",
@@ -44,7 +44,7 @@ const programs=[
     "weeklyLabel": "Base pool · Fridays 12:00 UTC",
     "total": null,
     "totalLabel": "Actual total not collected",
-    "note": "Officially named Layer 1 Season. Starts 1 September 2026 at 12:00 UTC and lasts 20 weeks. The 19 January 2027, 12:00 UTC end is calculated from that official duration, not a rolling estimate. Weekly actual payouts have not been collected.",
+    "note": "Officially named Layer 1 Season. Starts 1 September 2026 at 12:00 UTC and lasts 20 weeks. The 19 January 2027, 12:00 UTC end is calculated from that official duration, an official duration. Weekly actual payouts have not been collected.",
     "rules": "The base weekly pool is 900,000 SoPoints. An additional 2,000,000-point weekly pool is reserved for eligible traders active during August 2026. Snapshots are Tuesdays at 12:00 UTC; distributions are Fridays at 12:00 UTC. Trading, Wealth/SLP holdings and referrals contribute to points. Bonus pools are not included in the base figure.",
     "refs": [
       [
@@ -118,9 +118,9 @@ const programs=[
     "end": null,
     "weekly": 600000,
     "weeklyLabel": "Weekly cap · not a payout",
-    "total": 68234519,
-    "totalLabel": "Reported as of 22 Sep 2026",
-    "note": "The 600,000 figure is a maximum per weekly distribution, not a guaranteed payout. The reported cumulative total is dated 22 September 2026; individual weekly totals have not been collected.",
+    "total": 68734321,
+    "totalLabel": "Reported as of 29 Sep 2026",
+    "note": "The 600,000 figure is a maximum per weekly distribution, not a guaranteed payout. The reported cumulative total is dated 29 September 2026; individual weekly totals have not been collected.",
     "rules": "The program recognizes eligible trading, liquidity, referrals and other contributions. Parameters and allocations may be revised.",
     "refs": [
       [
@@ -155,7 +155,7 @@ const programs=[
     ],
     "history": [],
     "checkedAt": "2026-09-29",
-    "dateNote": "Start verified · Official end is TBD; projection only"
+    "dateNote": "Start verified · Official end is TBD"
   },
   {
     "id": "pacifica",
@@ -243,12 +243,16 @@ const programs=[
     "name": "Ethereal",
     "mark": "E",
     "season": "Trading points",
-    "status": "active",
-    "weeklyLabel": "Weekly · Fridays",
-    "note": "The current rules confirm a trading-points program but do not give exact start or end dates. Pre-deposit epochs and Ethena Exchange Points are separate; their dates are not reused here.",
-    "rules": "Eligible trading earns Ethereal Points. Weekly activity snapshots occur on Wednesdays at 23:59 UTC and distributions on Fridays.",
-    "dateNote": "Program verified · Exact start and end not verified",
+    "status": "review",
+    "weeklyLabel": "Markets closed · points status under review",
+    "note": "The live Ethereal app states that its markets have closed and users should withdraw remaining funds and transition to Meridian. The older points documentation remains online. It is not evidence of an active program; an exact points-season end has not been verified.",
+    "rules": "Historical documentation described trading rewards, Wednesday snapshots and Friday distributions. These rules are not treated as currently active after the market closure notice.",
+    "dateNote": "Markets closed · Exact points end not verified",
     "refs": [
+      [
+        "Live market closure notice",
+        "https://app.ethereal.trade/"
+      ],
       [
         "Current rewards and points rules",
         "https://docs.ethereal.trade/points/rewards-and-points"
@@ -318,9 +322,9 @@ const programs=[
     "status": "active",
     "weeklyMax": 950000,
     "weeklyLabel": "Volume-linked floor–cap · not actual payout",
-    "note": "Season 2 began on 21 May 2026. No exact end date is stated, so the existing rolling projection is used. The weekly pool varies with volume between 300,000 and 950,000 points.",
+    "note": "Season 2 began on 21 May 2026. No exact end date is stated. The weekly pool varies with volume between 300,000 and 950,000 points.",
     "rules": "Season 2 replaced the fixed weekly pool with volume-linked emissions. Existing points and trader history carry forward.",
-    "dateNote": "Start verified · End not announced; projection only",
+    "dateNote": "Start verified · End not announced",
     "refs": [
       [
         "Season 2 official launch and pool",
@@ -472,50 +476,210 @@ const programs=[
     "pointsConfirmed": false
   }
 ];
+// Curated snapshots; capture date is not the provider observation timestamp.
+const venueMetrics={
+  "Perpl": {
+    "slug": "perpl",
+    "volume": 13290000,
+    "oi": 1758614,
+    "funding": 9250000,
+    "fundingLabel": "Disclosed round",
+    "fundingSource": "https://blockworks.com/news/perpl-perpetuals-raise-funding-dragonfly-testnet",
+    "fundingNote": "Round announced 13 May 2025.",
+    "checkedAt": "2026-09-29",
+    "volumePageDate": "2026-09-29",
+    "scope": "Exchange perpetuals",
+    "marketSource": "https://defillama.com/protocol/perpl"
+  },
+  "SoDEX": {
+    "slug": "sodex-perps",
+    "volume": 83620000,
+    "oi": 90635418,
+    "funding": null,
+    "fundingLabel": "Not disclosed",
+    "fundingSource": null,
+    "fundingNote": "No standalone SoDEX raise verified; parent-company fundraising is not assigned to this exchange.",
+    "checkedAt": "2026-09-29",
+    "volumePageDate": "2026-09-27",
+    "scope": "Exchange perpetuals",
+    "marketSource": "https://defillama.com/protocol/sodex-perps"
+  },
+  "Lighter": {
+    "slug": "lighter-robinhood-perps",
+    "volume": 622220000,
+    "oi": 227625907,
+    "funding": 68000000,
+    "fundingLabel": "Series B only",
+    "fundingSource": "https://www.wsgr.com/en/people/rob-broderick.html",
+    "fundingNote": "Legal adviser lists a $68M Series B. This is one company round, not cumulative funding or funding specific to Robinhood Chain.",
+    "checkedAt": "2026-09-29",
+    "volumePageDate": "2026-09-29",
+    "scope": "Robinhood Chain perps only",
+    "marketSource": "https://defillama.com/protocol/lighter-robinhood-perps"
+  },
+  "Extended": {
+    "slug": "extended-perps",
+    "volume": 263370000,
+    "oi": 91588699,
+    "funding": 12500000,
+    "fundingLabel": "Latest verified round",
+    "fundingSource": "https://www.theblock.co/news/deals/2026-07-02-etoro-leads-12-5-million-round-in-onchain-perps-exchange-extended-407093",
+    "fundingNote": "Strategic round, 2 July 2026. Earlier rounds are not included.",
+    "checkedAt": "2026-09-29",
+    "volumePageDate": "2026-09-29",
+    "scope": "Exchange perpetuals",
+    "marketSource": "https://defillama.com/protocol/extended-perps"
+  },
+  "Paradex": {
+    "slug": "paradex-perps",
+    "volume": 44860000,
+    "oi": 12496938,
+    "funding": null,
+    "fundingLabel": "Incubated",
+    "fundingSource": "https://paradex.trade/blog/introducing-dime-the-native-token-of-the-paradex-network",
+    "fundingNote": "Incubated by Paradigm. No standalone external funding amount verified; parent funding is excluded.",
+    "checkedAt": "2026-09-29",
+    "volumePageDate": "2026-09-29",
+    "scope": "Perpetuals only · options excluded",
+    "marketSource": "https://defillama.com/protocol/paradex-perps"
+  },
+  "Pacifica": {
+    "slug": "pacifica-perps",
+    "volume": 450910000,
+    "oi": 55776011,
+    "funding": null,
+    "fundingLabel": "Self-funded",
+    "fundingSource": "https://docs.pacifica.fi/about-pacifica/team",
+    "fundingNote": "The team describes Pacifica as self-funded without external capital.",
+    "checkedAt": "2026-09-29",
+    "volumePageDate": "2026-09-29",
+    "scope": "Exchange perpetuals",
+    "marketSource": "https://defillama.com/protocol/pacifica-perps"
+  },
+  "Variational": {
+    "slug": "variational",
+    "volume": 3641000000,
+    "oi": 1047607603,
+    "funding": 61800000,
+    "fundingLabel": "Reported total",
+    "fundingSource": "https://defillama.com/protocol/variational",
+    "fundingNote": "DefiLlama records $10.3M in October 2024, $1.5M in June 2025 and $50M Series A in May 2026, totaling $61.8M.",
+    "checkedAt": "2026-09-29",
+    "volumePageDate": "2026-09-29",
+    "scope": "Exchange perpetuals",
+    "marketSource": "https://defillama.com/protocol/variational"
+  },
+  "BULK": {
+    "slug": "bulk",
+    "volume": 38420000,
+    "oi": 7816536,
+    "funding": 8000000,
+    "fundingLabel": "Seed round",
+    "fundingSource": "https://www.linkedin.com/posts/bulk-trade_bulk-is-bringing-the-ultimate-trading-experience-activity-7386104328484392961-osgm",
+    "fundingNote": "Company announcement of an $8M seed round.",
+    "checkedAt": "2026-09-29",
+    "volumePageDate": "2026-09-29",
+    "scope": "Exchange perpetuals",
+    "marketSource": "https://defillama.com/protocol/bulk"
+  },
+  "Hibachi": {
+    "slug": "hibachi",
+    "volume": 20910000,
+    "oi": 1416605,
+    "funding": 8000000,
+    "fundingLabel": "Reported total",
+    "fundingSource": "https://defillama.com/protocol/hibachi",
+    "fundingNote": "DefiLlama lists $5M in March 2025 and $3M in February 2026.",
+    "checkedAt": "2026-09-29",
+    "volumePageDate": "2026-09-29",
+    "scope": "Exchange perpetuals",
+    "marketSource": "https://defillama.com/protocol/hibachi"
+  },
+  "Nado": {
+    "slug": "nado-perps",
+    "volume": 409420000,
+    "oi": 43554275,
+    "funding": null,
+    "fundingLabel": "Not disclosed",
+    "fundingSource": null,
+    "fundingNote": "No standalone funding amount verified.",
+    "checkedAt": "2026-09-29",
+    "volumePageDate": "2026-09-29",
+    "scope": "Exchange perpetuals",
+    "marketSource": "https://defillama.com/protocol/nado-perps"
+  },
+  "Ostium": {
+    "slug": "ostium",
+    "volume": 5710000,
+    "oi": 10561797,
+    "funding": 27800000,
+    "fundingLabel": "Disclosed total",
+    "fundingSource": "https://www.ostium.com/blog/ostium-labs-raises-24m-co-led-by-general-catalyst-and-jump-crypto",
+    "fundingNote": "Official 3 December 2025 announcement gives $27.8M cumulative funding, including $24M of new funding.",
+    "checkedAt": "2026-09-29",
+    "volumePageDate": "2026-09-29",
+    "scope": "Exchange perpetuals",
+    "marketSource": "https://defillama.com/protocol/ostium"
+  },
+  "StandX": {
+    "slug": "standx-perps",
+    "volume": 450760000,
+    "oi": 21488653,
+    "funding": null,
+    "fundingLabel": "Self-funded",
+    "fundingSource": "https://docs.standx.com/",
+    "fundingNote": "Official documentation states the project is fully self-funded.",
+    "checkedAt": "2026-09-29",
+    "volumePageDate": "2026-09-29",
+    "scope": "Exchange perpetuals",
+    "marketSource": "https://defillama.com/protocol/standx-perps"
+  }
+};
+const OI_SOURCE="https://api.llama.fi/overview/open-interest?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true";
 const DAY=86400000;const parseDate=s=>Date.parse(s+'T00:00:00Z');
 const fmtDate=s=>s?new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'}).format(new Date(parseDate(s))):'Not verified';
 const num=n=>new Intl.NumberFormat('en-US').format(n);
 const compact=n=>new Intl.NumberFormat('en-US',{notation:'compact',maximumFractionDigits:2}).format(n);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function endInfo(p,now=Date.now()){
+function endInfo(p){
  if(p.status==='upcoming'&&p.pointsConfirmed===false)return null;
- if(p.end)return{date:p.end,ms:p.endAt?Date.parse(p.endAt):parseDate(p.end)+DAY,estimated:false,weeks:p.officialWeeks};
- if(p.endDeadline)return{date:p.endDeadline,ms:parseDate(p.endDeadline)+DAY,estimated:false,deadline:true};
- const anchor=p.start||p.timelineDate;
- if(!anchor||p.status!=='active')return null;
- if(p.estimatedEnd&&p.estimateSource&&parseDate(p.estimatedEnd)+DAY>now)return{date:p.estimatedEnd,ms:parseDate(p.estimatedEnd)+DAY,estimated:true,basis:p.estimateSource};
- const start=parseDate(anchor),block=140*DAY;
- const blocks=Math.floor(Math.max(0,now-start)/block)+1;
- const ms=start+blocks*block;
- return{date:new Date(ms).toISOString().slice(0,10),ms,estimated:true,weeks:blocks*20};
+ return p.end?{date:p.end,ms:p.endAt?Date.parse(p.endAt):parseDate(p.end)+DAY,weeks:p.officialWeeks}:null;
 }
 function timeline(p,now=Date.now()){
  if(p.status==='upcoming'&&p.pointsConfirmed===false)return{label:'No points program confirmed',percent:null,end:null};
- const anchor=p.start||p.timelineDate, end=endInfo(p,now);
- if(p.status==='review')return{label:'Dates under review',percent:null,end};
- if(end?.deadline)return{label:now>=end.ms?'Deadline passed · recheck':'Official latest end',percent:null,end};
- if(anchor&&end){const start=p.startAt?Date.parse(p.startAt):parseDate(anchor),elapsed=Math.max(0,now-start),percent=Math.max(0,Math.min(100,elapsed/(end.ms-start)*100));return{label:now<start?'Starts in '+Math.ceil((start-now)/DAY)+' days':now>=end.ms?'Season completed':'Week '+(Math.floor(elapsed/DAY/7)+1),percent,end,remaining:Math.max(0,Math.ceil((end.ms-now)/DAY))};}
- return{label:p.status==='ended'?'Season completed':p.status==='active'?'Start date needed':'Dates under review',percent:null,end};
+ const anchor=p.start||p.timelineDate,end=endInfo(p);
+ if(!end)return{label:p.endDeadline&&now>=parseDate(p.endDeadline)+DAY?'End window passed · recheck':'End date unknown',percent:50,placeholder:true,end:null};
+ if(anchor){const start=p.startAt?Date.parse(p.startAt):parseDate(anchor),elapsed=Math.max(0,now-start);return{label:now<start?'Not started':now>=end.ms?'Season completed':'Week '+(Math.floor(elapsed/DAY/7)+1),percent:Math.max(0,Math.min(100,elapsed/(end.ms-start)*100)),end,remaining:Math.max(0,Math.ceil((end.ms-now)/DAY))};}
+ return{label:'Start date unknown',percent:null,end};
 }
 function timelineHTML(p){
  const t=timeline(p),e=t.end;
- if(p.status==='upcoming'&&p.pointsConfirmed===false)return `<div class="timeline-box no-timeline upcoming-box"><div class="timeline-heading"><strong>${esc(t.label)}</strong><span class="time-pill">Upcoming</span></div><div class="timeline-dates"><div><small>Points start</small><strong>Not announced / unverified</strong></div><div><small>Points end</small><strong>Not announced / unverified</strong></div></div><div class="timeline-explainer">Exchange stage: ${esc(p.season)}. No points timeline or reward eligibility is assumed.</div></div>`;
- const dates=`<div class="timeline-dates"><div><small>${p.start?'Started':p.timelineLabel||'Start date'}</small><strong>${startText(p)}</strong></div><div><small>${endLabel(p)}</small><strong>${endText(p)}</strong></div></div><div class="timeline-explainer">${esc(p.dateNote||'')}</div>`;
- if(t.percent!==null){const pc=e.estimated?Math.min(99.9,Math.floor(t.percent*10)/10):Math.round(t.percent);return `<div class="timeline-box ${e.estimated?'projected':''}"><div class="timeline-heading"><strong>${esc(t.label)}${e.weeks?' / '+e.weeks:''}</strong><span class="time-pill">${pc}%${e.estimated?' · Estimated':''}</span></div><div class="track clear-progress" role="progressbar" aria-label="${esc(p.name+' '+p.season+(e.estimated?' estimated timeline progress':' time elapsed'))}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pc}"><span class="fill" style="width:${t.percent}%"></span></div><div class="projection-caption"><span>${e.estimated?t.remaining+' days to projected end':t.remaining?t.remaining+' days left':'Completed'}</span><span>${e.weeks?e.weeks+(e.estimated?'-week target':' weeks · Official'):''}</span></div>${dates}${e.estimated?`<div class="timeline-explainer">${e.weeks?'Rolling 20-week projection':'Source-based estimate'} · Not official${p.timelineDate?' · Based on first weekly drop':''}</div>`:''}${p.officialWeeks?'<div class="timeline-explainer">Official duration · 12:00 UTC start and end</div>':''}</div>`;}
- return `<div class="timeline-box no-timeline"><div class="timeline-heading"><strong>${esc(t.label)}</strong><span class="time-pill">${e?.deadline?'Latest bound':p.status==='ended'?'Ended':'Pending'}</span></div>${dates}<div class="timeline-explainer">${e?.deadline?'Official latest-end window; not a confirmed closing day.':p.status==='active'?'No exact timeline is drawn without verified dates.':'See program details for source notes.'}</div></div>`;
+ if(p.status==='upcoming'&&p.pointsConfirmed===false)return '<div class="timeline-box no-timeline upcoming-box"><div class="timeline-heading"><strong>No points program confirmed</strong><span class="time-pill">Upcoming</span></div><div class="timeline-explainer">Points start and end unannounced / unverified. Exchange launch does not establish points eligibility.</div></div>';
+ const dates='<div class="timeline-dates"><div><small>'+esc(p.start?'Started':p.timelineLabel||'Start date')+'</small><strong>'+startText(p)+'</strong></div><div><small>End date</small><strong>'+endText(p)+'</strong></div></div><div class="timeline-explainer">'+esc(p.dateNote||'')+'</div>';
+ if(t.placeholder)return '<div class="timeline-box unknown-end"><div class="timeline-heading"><strong>'+esc(t.label)+'</strong><span class="time-pill">Unknown</span></div><div class="track clear-progress" aria-hidden="true"><span class="fill" style="width:50%"></span></div><div class="timeline-explainer">Fixed indicator · not elapsed progress</div>'+dates+'</div>';
+ const progress=t.percent===null?'':'<div class="track clear-progress" role="progressbar" aria-label="'+esc(p.name+' time elapsed')+'" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+Math.round(t.percent)+'"><span class="fill" style="width:'+t.percent+'%"></span></div><div class="projection-caption">'+(t.remaining?t.remaining+' days left':'Completed')+'</div>';
+ return '<div class="timeline-box"><div class="timeline-heading"><strong>'+esc(t.label)+(e?.weeks?' / '+e.weeks:'')+'</strong><span class="time-pill">'+(t.percent===null?'Unknown':Math.round(t.percent)+'%')+'</span></div>'+progress+dates+'</div>';
 }
 function startText(p){return p.start||p.timelineDate?fmtDate(p.start||p.timelineDate):esc(p.startText||'Not verified');}
-function endLabel(p){const e=endInfo(p);return e?.deadline?'Latest possible end':e?.estimated?'Estimated end · Not official':p.endText?'End window':'End date';}
-function endText(p){const e=endInfo(p);return e?(e.deadline?'By ':'')+fmtDate(e.date):esc(p.endText||'Not available');}
+function endLabel(){return 'End date';}
+function endText(p){return p.end?fmtDate(p.end):esc(p.endText||'End date unknown');}
+function usd(value){return Number.isFinite(value)?'$'+compact(value):'Not available';}
+function metricCells(p){const m=venueMetrics[p.name];return ['funding','volume','oi'].map(key=>{
+ const value=m?.[key];const label=key==='funding'?(Number.isFinite(m?.funding)?m.fundingLabel:'See source notes'):key==='volume'?(m?'Page snapshot · '+fmtDate(m.volumePageDate):'No verified snapshot'):(m?'API snapshot · 29 Sep 2026':'No verified snapshot');
+ return '<div class="metric '+key+'"><span class="number '+(Number.isFinite(value)?'':'missing')+'">'+(key==='funding'&&!Number.isFinite(value)?esc(m?.fundingLabel||'Not verified'):usd(value))+'</span><span class="sub">'+esc(label)+'</span></div>';
+ }).join('');}
+function metricsHTML(p){const m=venueMetrics[p.name];if(!m)return '<h3>Funding & market data</h3><p>No verified snapshot recorded for this exchange.</p>';
+ return '<h3>Funding & market data</h3><div class="detail-grid"><div><small>Funding · '+esc(m.fundingLabel)+'</small><strong>'+usd(m.funding)+'</strong></div><div><small>Perp volume · 24h · USD</small><strong>'+usd(m.volume)+'</strong></div><div><small>Open interest · USD notional</small><strong>'+usd(m.oi)+'</strong></div><div><small>Market scope</small><strong>'+esc(m.scope)+'</strong></div></div><p>'+esc(m.fundingNote)+'</p><p>Market data is a saved snapshot, not live. Volume is the rounded reported 24h value on the provider page captured '+fmtDate(m.volumePageDate)+'. Open interest was retrieved from the provider API on '+fmtDate(m.checkedAt)+'. Provider observation times are not published in these snapshots; the two values are not synchronized. These are current venue metrics, not this season’s totals. Open interest is dollar exposure, not a count of positions.</p><ul class="source-list"><li><a href="'+m.marketSource+'" target="_blank" rel="noopener noreferrer">DefiLlama · reported perp volume</a></li><li><a href="'+OI_SOURCE+'" target="_blank" rel="noopener noreferrer">DefiLlama · open interest API</a></li>'+(m.fundingSource?'<li><a href="'+m.fundingSource+'" target="_blank" rel="noopener noreferrer">Funding source · '+esc(m.fundingLabel)+'</a></li>':'')+'</ul>';
+}
 function weeklyText(p,format=compact){if(p.weekly===null)return 'Not available';if(p.weeklyMax)return format(p.weekly)+'–'+format(p.weeklyMax);return (p.weeklyQualifier?esc(p.weeklyQualifier)+' ':'')+format(p.weekly);}
 let filter='all';
 const rows=document.getElementById('rows'),search=document.getElementById('search'),sort=document.getElementById('sort'),dialog=document.getElementById('detail');
 const statusLabels={active:'Active',review:'Needs review',ended:'Completed',upcoming:'Upcoming'};
 function filteredPrograms(){const q=search.value.trim().toLowerCase();const now=Date.now();return programs.filter(p=>{const matches=filter==='all'||p.status===filter||(filter==='ending'&&p.status==='active'&&endInfo(p,now)&&endInfo(p,now).ms>now&&endInfo(p,now).ms-now<=30*DAY);return matches&&`${p.name} ${p.season}`.toLowerCase().includes(q)}).sort((a,b)=>sort.value==='name'?a.name.localeCompare(b.name):sort.value==='start'?(b.start?parseDate(b.start):-Infinity)-(a.start?parseDate(a.start):-Infinity):sort.value==='end'?(endInfo(a,now)?.ms??Infinity)-(endInfo(b,now)?.ms??Infinity):({active:0,upcoming:1,review:2,ended:3}[a.status]-{active:0,upcoming:1,review:2,ended:3}[b.status]));}
-function render(){const list=filteredPrograms();document.getElementById('result-count').textContent=list.length;document.getElementById('showing').textContent=`Showing ${list.length} of ${programs.length} entries`;document.getElementById('venue-count').textContent=new Set(programs.map(p=>p.name)).size;document.getElementById('active-count').textContent=programs.filter(p=>p.status==='active').length;rows.innerHTML=list.length?list.map(p=>`<button class="program-row" data-program="${p.id}" aria-label="View ${esc(p.name+' '+p.season)} details"><div class="exchange"><span class="monogram" aria-hidden="true">${p.mark}</span><span><strong>${p.name}</strong><small>${p.season}</small><span class="badge ${p.status}">${statusLabels[p.status]}</span></span></div><div class="timeline">${timelineHTML(p)}</div><div class="weekly"><span class="number ${p.weekly===null?'missing':''}">${weeklyText(p)}</span><span class="sub">${p.weeklyLabel}</span></div><div class="total"><span class="number ${p.total===null?'missing':''}">${p.total===null?'Not available':(p.approx?'≈ ':'')+compact(p.total)}</span><span class="sub">${p.totalLabel}</span></div><span class="chevron" aria-hidden="true">›</span></button>`).join(''):`<div class="empty"><h3>No matching entries.</h3><p>${filter==='ending'?'No active program has an official end, latest-end bound or estimated end within 30 days.':filter==='upcoming'?'No upcoming entry matches this search.':'Try another exchange or change the status filter.'}</p><button id="reset">Show all programs</button></div>`;rows.querySelectorAll('[data-program]').forEach(b=>b.addEventListener('click',()=>openProgram(b.dataset.program)));document.getElementById('reset')?.addEventListener('click',()=>{search.value='';setFilter('all')});}
+function render(){const list=filteredPrograms();document.getElementById('result-count').textContent=list.length;document.getElementById('showing').textContent=`Showing ${list.length} of ${programs.length} entries`;document.getElementById('venue-count').textContent=new Set(programs.map(p=>p.name)).size;document.getElementById('active-count').textContent=programs.filter(p=>p.status==='active').length;rows.innerHTML=list.length?list.map(p=>`<button class="program-row" data-program="${p.id}" aria-label="View ${esc(p.name+' '+p.season)} details"><div class="exchange"><span class="monogram" aria-hidden="true">${p.mark}</span><span><strong>${p.name}</strong><small>${p.season}</small><span class="badge ${p.status}">${statusLabels[p.status]}</span></span></div><div class="timeline">${timelineHTML(p)}</div><div class="weekly"><span class="number ${p.weekly===null?'missing':''}">${weeklyText(p)}</span><span class="sub">${p.weeklyLabel}</span></div><div class="total"><span class="number ${p.total===null?'missing':''}">${p.total===null?'Not available':(p.approx?'≈ ':'')+compact(p.total)}</span><span class="sub">${p.totalLabel}</span></div>${metricCells(p)}<span class="chevron" aria-hidden="true">›</span></button>`).join(''):`<div class="empty"><h3>No matching entries.</h3><p>${filter==='ending'?'No active program has an confirmed exact end within 30 days.':filter==='upcoming'?'No upcoming entry matches this search.':'Try another exchange or change the status filter.'}</p><button id="reset">Show all programs</button></div>`;rows.querySelectorAll('[data-program]').forEach(b=>b.addEventListener('click',()=>openProgram(b.dataset.program)));document.getElementById('reset')?.addEventListener('click',()=>{search.value='';setFilter('all')});}
 function setFilter(value){filter=value;document.querySelectorAll('[data-filter]').forEach(b=>{b.classList.toggle('selected',b.dataset.filter===value);b.setAttribute('aria-pressed',String(b.dataset.filter===value))});render();}
 function showDialog(){if(!dialog.open)dialog.showModal();}
-function openProgram(id){const p=programs.find(x=>x.id===id);if(!p)throw new Error('Unknown program');document.getElementById('dialog-content').innerHTML=`<div class="eyebrow">PROGRAM DETAILS · CHECKED ${fmtDate(CHECKED)}</div><div class="detail-head"><span class="monogram">${p.mark}</span><div><h2 id="dialog-title">${p.name}</h2><p>${p.season} <span class="badge ${p.status}">${statusLabels[p.status]}</span></p></div></div><div class="detail-timeline">${timelineHTML(p)}</div><div class="detail-grid"><div><small>${p.timelineDate?'First weekly drop':'Start date'}</small><strong>${startText(p)}</strong></div><div><small>${endLabel(p)}</small><strong>${endText(p)}</strong></div><div><small>${p.weeklyLabel}</small><strong>${weeklyText(p,num)}</strong></div><div><small>${p.totalLabel}</small><strong>${p.total===null?'Not available':(p.approx?'≈ ':'')+num(p.total)}</strong></div></div><div class="note ${p.status==='review'?'review':''}">${p.note}</div><h3>Program notes</h3><p>${p.rules}</p><h3>Distribution history</h3>${p.history.length?`<p class="history-note">${p.history.length} verified announcements · ${num(p.history.reduce((sum,r)=>sum+r.amount,0))} points recorded. Partial coverage; not the full program total. Exact distribution dates are not verified here, so records use their announcement IDs.</p>${p.history.map(r=>`<div class="history-row"><a href="${r.url}" target="_blank" rel="noopener noreferrer">${r.label}</a><div class="track"><span class="fill" style="width:${r.amount/Math.max(...p.history.map(x=>x.amount))*100}%"></span></div><strong>${num(r.amount)}</strong></div>`).join('')}`:'<p>No individual weekly distributions are recorded for this program. An announced weekly pool is not a substitute for actual distribution history.</p>'}<h3>Official sources</h3><ul class="source-list">${p.refs.map(([label,url])=>`<li><a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a></li>`).join('')}</ul><p class="history-note">Research snapshot: ${fmtDate(CHECKED)}. Program facts do not refresh automatically. Elapsed time is calculated from known dates. Program points are not comparable monetary units.</p>`;showDialog();}
-function openMethod(){document.getElementById('dialog-content').innerHTML=`<div class="eyebrow">ABOUT THE DATA</div><h2 id="dialog-title">Clarity over false precision.</h2><p>Openpers is an independent directory of perpetual exchange points programs. This first edition is a curated research snapshot dated ${fmtDate(CHECKED)}.</p><h3>What the labels mean</h3><ul><li><strong>Active:</strong> the reviewed documentation or recent official announcements describe an ongoing program.</li><li><strong>Upcoming:</strong> future programs and early exchanges to follow. Entries labeled No points program confirmed have no verified points launch and do not promise future rewards. Exchange beta and mainnet dates are separate from points dates.</li><li><strong>Needs review:</strong> dates or current status cannot be reconciled, or the live source could not be retrieved.</li><li><strong>Completed:</strong> an official source explicitly records the season end.</li><li><strong>Weekly cap / announced pool:</strong> a program parameter, not a recorded payment.</li><li><strong>Partial total:</strong> the sum of only the distributions collected here.</li></ul><h3>How time is calculated</h3><p>Dates use UTC. Week 1 starts on the listed start date; elapsed weeks are calendar calculations, not official epoch numbers. Progress uses exact UTC times where supplied; date-only official ends include the final day. Progress is capped at 100%. Official exact end dates take priority. Official latest-end windows are shown as bounds without a progress bar; an elapsed bound does not prove completion. Partial dates keep their published precision. Otherwise, a future source-backed estimate is used when recorded. With no such estimate, active programs with a known timeline anchor use the first future 20-week boundary: 20, 40, 60 weeks and so on. At each boundary the target rolls forward by 20 weeks and the percentage falls accordingly. These are planning projections, not exchange announcements. Estimated boundaries occur at 00:00 UTC on the displayed date. Programs without a known start or timeline anchor cannot be projected. Lighter Robinhood Chain uses its first weekly drop as the timeline anchor, separately from the terms effective date.</p><h3>What updates automatically?</h3><p>Elapsed time and rolling projections update while this page is open. Source facts and distributions are curated and do not update automatically. Old sources can remain online after a program changes; ambiguous entries stay under review.</p><h3>Coverage</h3><p>This edition covers ${new Set(programs.map(p=>p.name)).size} exchanges and ${programs.length} entries. Programs known to have ended before 1 January 2026 are excluded. It is not an exhaustive market list. Missing official dates stay unknown; clearly labeled projections may supplement them. Missing payouts remain unavailable. Point totals are never added across exchanges.</p>`;showDialog();}
+function openProgram(id){const p=programs.find(x=>x.id===id);if(!p)throw new Error('Unknown program');document.getElementById('dialog-content').innerHTML=`<div class="eyebrow">PROGRAM DETAILS · CHECKED ${fmtDate(CHECKED)}</div><div class="detail-head"><span class="monogram">${p.mark}</span><div><h2 id="dialog-title">${p.name}</h2><p>${p.season} <span class="badge ${p.status}">${statusLabels[p.status]}</span></p></div></div><div class="detail-timeline">${timelineHTML(p)}</div><div class="detail-grid"><div><small>${p.timelineDate?'First weekly drop':'Start date'}</small><strong>${startText(p)}</strong></div><div><small>${endLabel(p)}</small><strong>${endText(p)}</strong></div><div><small>${p.weeklyLabel}</small><strong>${weeklyText(p,num)}</strong></div><div><small>${p.totalLabel}</small><strong>${p.total===null?'Not available':(p.approx?'≈ ':'')+num(p.total)}</strong></div></div><div class="note ${p.status==='review'?'review':''}">${p.note}</div><h3>Program notes</h3><p>${p.rules}</p>${metricsHTML(p)}<h3>Distribution history</h3>${p.history.length?`<p class="history-note">${p.history.length} verified announcements · ${num(p.history.reduce((sum,r)=>sum+r.amount,0))} points recorded. Partial coverage; not the full program total. Exact distribution dates are not verified here, so records use their announcement IDs.</p>${p.history.map(r=>`<div class="history-row"><a href="${r.url}" target="_blank" rel="noopener noreferrer">${r.label}</a><div class="track"><span class="fill" style="width:${r.amount/Math.max(...p.history.map(x=>x.amount))*100}%"></span></div><strong>${num(r.amount)}</strong></div>`).join('')}`:'<p>No individual weekly distributions are recorded for this program. An announced weekly pool is not a substitute for actual distribution history.</p>'}<h3>Official sources</h3><ul class="source-list">${p.refs.map(([label,url])=>`<li><a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a></li>`).join('')}</ul><p class="history-note">Research snapshot: ${fmtDate(CHECKED)}. Program facts do not refresh automatically. Elapsed time is calculated from known dates. Program points are not comparable monetary units.</p>`;showDialog();}
+function openMethod(){document.getElementById('dialog-content').innerHTML=`<div class="eyebrow">ABOUT THE DATA</div><h2 id="dialog-title">Clarity over false precision.</h2><p>Openpers is an independent directory of perpetual exchange points programs. This first edition is a curated research snapshot dated ${fmtDate(CHECKED)}.</p><h3>What the labels mean</h3><ul><li><strong>Active:</strong> the reviewed documentation or recent official announcements describe an ongoing program.</li><li><strong>Upcoming:</strong> future programs and early exchanges to follow. Entries labeled No points program confirmed have no verified points launch and do not promise future rewards. Exchange beta and mainnet dates are separate from points dates.</li><li><strong>Needs review:</strong> dates or current status cannot be reconciled, or the live source could not be retrieved.</li><li><strong>Completed:</strong> an official source explicitly records the season end.</li><li><strong>Weekly cap / announced pool:</strong> a program parameter, not a recorded payment.</li><li><strong>Partial total:</strong> the sum of only the distributions collected here.</li></ul><h3>How time is calculated</h3><p>Dates use UTC. Exact official dates determine elapsed progress; date-only ends include the final day. An end derived from an explicitly published duration is retained. Without an exact end, the bar stays halfway and says End date unknown. That fixed indicator is decorative, not 50% elapsed. No estimated dates or rolling targets are generated. Official end windows remain notes and do not qualify for Ending soon. Unconfirmed Upcoming entries do not imply a points timeline.</p><h3>Funding and market snapshots</h3><p>All financial figures are USD. Funding labels distinguish cumulative totals from individual rounds. Self-funded does not mean a disclosed zero-dollar budget. Parent-company raises and valuations are not exchange funding. Volume is the provider’s reported 24h notional volume, not spot volume or independently audited activity. Open interest is outstanding USD exposure, not the number of positions. Lighter metrics cover Robinhood Chain only; Paradex excludes options. Open program details for source links, scope and snapshot dates. Provider observation times are unavailable; snapshots are not synchronized or live. Historical seasons show current venue metrics.</p><h3>What updates automatically?</h3><p>Only elapsed time for known dates updates in the browser. Program facts, funding, distributions and market metrics are curated snapshots. Missing values remain unavailable.</p><h3>Coverage</h3><p>Programs known to have ended before 1 January 2026 are excluded. This is not an exhaustive market list. Upcoming exchanges do not promise a future points program. Point totals are not comparable monetary units.</p>`;showDialog();}
 document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>setFilter(b.dataset.filter)));search.addEventListener('input',render);sort.addEventListener('change',render);document.getElementById('method-btn').addEventListener('click',openMethod);document.getElementById('footer-method').addEventListener('click',openMethod);document.querySelector('.close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});render();setInterval(render,60000);
 if(document.modelContext?.registerTool){try{Promise.resolve(document.modelContext.registerTool({name:'filter_points_programs',title:'Filter points programs',description:'Filter the visible Openpers program list by exchange name and program status.',inputSchema:{type:'object',properties:{query:{type:'string'},status:{type:'string',enum:['all','active','upcoming','ending','ended','review']}},additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute(input){if(!input||typeof input!=='object'||Object.keys(input).some(k=>!['query','status'].includes(k))||(input.query!==undefined&&typeof input.query!=='string')||(input.status!==undefined&&!['all','active','upcoming','ending','ended','review'].includes(input.status)))throw new Error('Invalid filter');search.value=input.query??'';setFilter(input.status??'all');return{count:filteredPrograms().length,programs:filteredPrograms().map(p=>({id:p.id,name:p.name,season:p.season,status:p.status}))}}})).catch(()=>{});}catch{}}

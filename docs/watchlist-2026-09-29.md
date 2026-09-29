@@ -1,3 +1,5 @@
+> Historical research pass. Current coverage, timeline policy and market data: [29 September update](market-research-2026-09-29.md).
+
 # Pre-points watchlist — 29 September 2026
 
 ## Display update
