@@ -12,11 +12,18 @@ export function validateSubmission(input) {
   if (!['dex', 'correction'].includes(input.kind)) return null;
   if (!text(input.name, 2, 100) || !text(input.website, 8, 500) || !text(input.description, 10, 3000)) return null;
   if (input.xHandle !== undefined && (typeof input.xHandle !== 'string' || (input.xHandle && !/^@?[A-Za-z0-9_]{1,15}$/.test(input.xHandle)))) return null;
+  if (input.referralUrl !== undefined && (typeof input.referralUrl !== 'string' || input.referralUrl.length > 1000)) return null;
   try {
     const url = new URL(input.website.trim());
     if (url.protocol !== 'https:' || url.username || url.password || !url.hostname.includes('.')) return null;
+    let referralUrl = '';
+    if (input.referralUrl?.trim()) {
+      const referral = new URL(input.referralUrl.trim());
+      if (referral.protocol !== 'https:' || referral.username || referral.password || !referral.hostname.includes('.')) return null;
+      referralUrl = referral.href;
+    }
     return { kind: input.kind, name: input.name.trim(), website: url.href,
-      description: input.description.trim(), xHandle: (input.xHandle || '').replace(/^@/, '') };
+      description: input.description.trim(), xHandle: (input.xHandle || '').replace(/^@/, ''), referralUrl };
   } catch { return null; }
 }
 

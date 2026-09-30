@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { createPreviewServer } from '../scripts/serve.mjs';
 import { validateSubmission } from '../scripts/submissions.mjs';
 
-const fields = { kind: 'dex', name: 'Example DEX', website: 'https://example.com/', description: 'An example submission for review.', xHandle: '@example', company: '' };
+const fields = { kind: 'dex', name: 'Example DEX', website: 'https://example.com/', description: 'An example submission for review.', xHandle: '@example', referralUrl: 'https://example.com/join?ref=community', company: '' };
 async function fixture(t, options = {}) {
   const directory = await mkdtemp(join(tmpdir(), 'openpers-form-'));
   let now = Date.parse('2026-09-30T12:00:00Z');
@@ -24,6 +24,7 @@ test('anonymous submissions persist privately and retries do not duplicate recor
   const receipt = await response.json();
   const entry = JSON.parse(await readFile(join(f.directory, receipt.id + '.json'), 'utf8'));
   assert.equal(entry.status, 'pending'); assert.equal(entry.xHandle, 'example'); assert.equal(entry.website, fields.website);
+  assert.equal(entry.referralUrl, fields.referralUrl);
   assert.equal('token' in entry, false); assert.equal('ip' in entry, false);
   assert.equal((await f.post({ ...fields, token })).status, 201);
   assert.equal((await f.post({ ...fields, token, name: 'Other DEX' })).status, 409);
@@ -56,4 +57,7 @@ test('invalid URLs and missing required fields never validate', () => {
   for (const website of ['http://example.com', 'https://user:pass@example.com', 'https://localhost']) assert.equal(validateSubmission({ ...fields, website }), null);
   assert.equal(validateSubmission({ ...fields, description: '' }), null);
   assert.equal(validateSubmission({ ...fields, kind: 'publish' }), null);
+  for (const referralUrl of ['javascript:alert(1)', 'http://example.com/ref', 'https://user:pass@example.com', 123]) assert.equal(validateSubmission({ ...fields, referralUrl }), null);
+  assert.equal(validateSubmission({ ...fields, referralUrl: undefined }).referralUrl, '');
+  assert.equal(validateSubmission({ ...fields, referralUrl: '' }).referralUrl, '');
 });

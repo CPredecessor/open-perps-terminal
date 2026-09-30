@@ -16,8 +16,8 @@ The hosting provider and domain have not yet been selected. This repository cont
 
 On 30 September 2026, the main branch protection rule was enabled: one approval, required code owner review, dismissal of stale approvals, required validate check from GitHub Actions, up-to-date branches and resolved conversations. Force pushes and deletion remain disabled. The existing administrator exception is retained for the sole maintainer; do not give outside contributors administrator access. Hosting is not configured by this rule.
 
-## Referral proposal (not launched)
+## Referral submissions
 
-Official source links remain non-referral. A future community referral campaign may direct users to a specific maintainer-selected X post. No campaign CTA should appear until that exact post URL is supplied.
+Official source links remain non-referral. The account-free form accepts an optional referral link alongside the official website. Submissions are private, reviewed manually and have no guaranteed placement. An X campaign is optional and requires a maintainer-supplied post URL.
 
-Review the destination domain and referral code before listing. Clearly label any accepted link as a community referral and disclose that its owner may benefit. Keep the official non-referral alternative available. Referral submissions do not automatically enter the site, promise placement, or affect data, ranking or exchange inclusion. Decide selection and expiry rules before opening submissions. Do not fetch or render arbitrary submitted URLs automatically.
+Review the destination domain and referral code before listing. Clearly label any accepted link as a community referral and disclose that its owner may benefit. Keep the official non-referral alternative available. Referral submissions do not automatically enter the site, promise placement, or affect data, ranking or exchange inclusion. Decide selection and expiry rules before featuring any accepted referral links. Do not fetch or render arbitrary submitted URLs automatically.
