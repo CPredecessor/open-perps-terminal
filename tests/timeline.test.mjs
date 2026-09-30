@@ -106,6 +106,9 @@ test('upcoming entries are searchable and excluded from active programs', () => 
   });
   assert.deepEqual(Array.from(run('upcoming','arcus')), ['Arcus']);
   assert.equal(run('active','arcus').length, 0);
+  assert.deepEqual(Array.from(run('active','monad')), ['Perpl']);
+  assert.deepEqual(Array.from(run('upcoming','stellar')), ['Noether']);
+  assert.deepEqual(Array.from(run('active','robinhood chain')), ['Lighter']);
   assert.deepEqual(Array.from(run('upcoming','noether')), ['Noether']);
   assert.equal(run('all','hyperliquid').length, 0);
   assert.equal(run('ended','lighter').length, 0);

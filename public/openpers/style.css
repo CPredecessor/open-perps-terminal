@@ -12,3 +12,5 @@
 @media(max-width:760px){.table-scroll{overflow:visible}.program-row{min-width:0;grid-template-columns:1fr 1fr;gap:18px}.list-head{display:none}.metric:before{display:block;font-size:10px;letter-spacing:1px;color:var(--muted);margin-bottom:5px}.funding:before{content:'FUNDING · USD'}.volume:before{content:'PERP VOLUME · 24H'}.oi:before{content:'OPEN INTEREST · USD'}.metric{min-width:0}.metric .number{white-space:normal}}
 
 .estimate-label{color:#865b30;font-weight:600}
+
+.networks{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin:7px 0}.network-label{font-size:10px;color:var(--muted);width:100%;letter-spacing:.4px}.network-chip{display:inline-block;border:1px solid #cdd8c7;border-radius:5px;padding:3px 6px;color:#365743;background:#f0f4ec;font-size:11px;line-height:1.35}.network-detail{margin:0 0 22px;padding:14px 16px;border:1px solid #dce3d5;border-radius:8px}.network-detail p{margin:8px 0;font-size:13px}.network-detail>small{color:var(--muted);font-size:11px}

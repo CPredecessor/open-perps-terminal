@@ -23,11 +23,20 @@ const programs=[
       [
         "Perpl on Monad",
         "https://docs.perpl.xyz/"
+      ],
+      [
+        "Network · official documentation",
+        "https://docs.perpl.xyz/"
       ]
     ],
     "history": [],
     "checkedAt": "2026-09-29",
-    "dateNote": "Start verified · End not announced"
+    "dateNote": "Start verified · End not announced",
+    "networks": [
+      "Monad"
+    ],
+    "networkNote": "On-chain exchange and settlement on Monad.",
+    "networkCheckedAt": "2026-09-30"
   },
   {
     "id": "sodex-s2",
@@ -50,11 +59,20 @@ const programs=[
       [
         "Official Layer 1 Season rules",
         "https://sodex.com/documentation/sopoints/layer-1-season"
+      ],
+      [
+        "Network · official documentation",
+        "https://sodex.com/documentation/about-sodex/how-sodex-works"
       ]
     ],
     "history": [],
     "checkedAt": "2026-09-29",
-    "dateNote": "Start verified · End calculated from the official 20-week duration"
+    "dateNote": "Start verified · End calculated from the official 20-week duration",
+    "networks": [
+      "ValueChain"
+    ],
+    "networkNote": "SoDEX spot and perpetual appchains run within ValueChain. External deposit networks are separate.",
+    "networkCheckedAt": "2026-09-30"
   },
   {
     "id": "lighter-rh",
@@ -81,6 +99,10 @@ const programs=[
       [
         "Official announcements",
         "https://t.me/s/lighter_announcements"
+      ],
+      [
+        "Network · official documentation",
+        "https://docs.lighter.xyz/points-program/lighter-on-robinhood-chain-points"
       ]
     ],
     "history": [
@@ -106,7 +128,12 @@ const programs=[
       }
     ],
     "checkedAt": "2026-09-29",
-    "dateNote": "First weekly drop verified · Not the program launch date"
+    "dateNote": "First weekly drop verified · Not the program launch date",
+    "networks": [
+      "Robinhood Chain"
+    ],
+    "networkNote": "This entry covers the Robinhood Chain points program.",
+    "networkCheckedAt": "2026-09-30"
   },
   {
     "id": "extended",
@@ -134,6 +161,14 @@ const programs=[
       [
         "Official 600K weekly-distribution update · 7 July 2026",
         "https://t.me/extended_updates/324"
+      ],
+      [
+        "Network · official documentation",
+        "https://extended.exchange/"
+      ],
+      [
+        "Arc migration announcement",
+        "https://t.me/extended_updates/360"
       ]
     ],
     "history": [],
@@ -142,7 +177,12 @@ const programs=[
     "weeklyQualifier": "≤",
     "timelineDate": "2025-02-26",
     "timelineLabel": "Earliest verified allocation",
-    "weekSuffix": "since verified allocation"
+    "weekSuffix": "since verified allocation",
+    "networks": [
+      "Starknet"
+    ],
+    "networkNote": "The website still describes Starknet settlement. Migration to Arc has been announced; completion and timing are not confirmed in the reviewed sources.",
+    "networkCheckedAt": "2026-09-30"
   },
   {
     "id": "paradex-s3",
@@ -162,11 +202,20 @@ const programs=[
       [
         "Season dates and XP pools",
         "https://docs.paradex.trade/docs/xp-referrals/xp"
+      ],
+      [
+        "Network · official documentation",
+        "https://docs.paradex.trade/home"
       ]
     ],
     "history": [],
     "checkedAt": "2026-09-29",
-    "dateNote": "Start verified · Official end is TBD"
+    "dateNote": "Start verified · Official end is TBD",
+    "networks": [
+      "Paradex Chain"
+    ],
+    "networkNote": "Dedicated appchain on Starknet.",
+    "networkCheckedAt": "2026-09-30"
   },
   {
     "id": "pacifica",
@@ -194,12 +243,21 @@ const programs=[
       [
         "Official company history",
         "https://docs.pacifica.fi/about-pacifica/team"
+      ],
+      [
+        "Network · official documentation",
+        "https://docs.pacifica.fi/pacifica/readme"
       ]
     ],
     "history": [],
     "dateNote": "Official day/time · 2025 corroborated by campaign records",
     "checkedAt": "2026-09-29",
-    "startAt": "2025-09-04T00:00:00Z"
+    "startAt": "2025-09-04T00:00:00Z",
+    "networks": [
+      "Solana"
+    ],
+    "networkNote": "Perpetual exchange on Solana.",
+    "networkCheckedAt": "2026-09-30"
   },
   {
     "id": "paradex-s2",
@@ -220,11 +278,20 @@ const programs=[
       [
         "Previous seasons",
         "https://docs.paradex.trade/docs/xp-referrals/xp"
+      ],
+      [
+        "Network · official documentation",
+        "https://docs.paradex.trade/home"
       ]
     ],
     "history": [],
     "checkedAt": "2026-09-29",
-    "dateNote": "Start and end explicitly verified"
+    "dateNote": "Start and end explicitly verified",
+    "networks": [
+      "Paradex Chain"
+    ],
+    "networkNote": "Dedicated appchain on Starknet.",
+    "networkCheckedAt": "2026-09-30"
   },
   {
     "start": "2025-12-17",
@@ -247,9 +314,18 @@ const programs=[
       [
         "Current launch date and end window",
         "https://docs.variational.io/omni/rewards/points"
+      ],
+      [
+        "Network · official documentation",
+        "https://docs.variational.io/omni/getting-started-with-omni"
       ]
     ],
-    "checkedAt": "2026-09-29"
+    "checkedAt": "2026-09-29",
+    "networks": [
+      "Arbitrum One"
+    ],
+    "networkNote": "Omni settlement pools are deployed on Arbitrum One.",
+    "networkCheckedAt": "2026-09-30"
   },
   {
     "start": null,
@@ -275,9 +351,18 @@ const programs=[
       [
         "Current rewards and points rules",
         "https://docs.ethereal.trade/points/rewards-and-points"
+      ],
+      [
+        "Network · official documentation",
+        "https://docs.ethereal.trade/"
       ]
     ],
-    "checkedAt": "2026-09-29"
+    "checkedAt": "2026-09-29",
+    "networks": [
+      "Ethereal Chain"
+    ],
+    "networkNote": "Historical venue appchain with settlement via Arbitrum One. Markets are closed; see program status.",
+    "networkCheckedAt": "2026-09-30"
   },
   {
     "start": null,
@@ -303,11 +388,21 @@ const programs=[
       [
         "Announcement archive · distinguishes Series announcement from Season 1 launch",
         "https://polymart.app/airdrop/bulk-trade"
+      ],
+      [
+        "Network · official documentation",
+        "https://docs.bulk.trade/architecture/overview"
       ]
     ],
     "checkedAt": "2026-09-29",
     "pointsConfirmed": true,
-    "startText": "Season launch not confirmed"
+    "startText": "Season launch not confirmed",
+    "networks": [
+      "BULK Net",
+      "Solana"
+    ],
+    "networkNote": "BULK Net handles execution; Solana handles asset custody and deposit/withdrawal settlement.",
+    "networkCheckedAt": "2026-09-30"
   },
   {
     "start": null,
@@ -333,12 +428,23 @@ const programs=[
       [
         "Contemporaneous launch report · 3 March 2025 (secondary)",
         "https://www.odaily.news/post/5202064"
+      ],
+      [
+        "Network · official documentation",
+        "https://docs.hibachi.xyz/hibachi-docs/getting-started/signing-up"
       ]
     ],
     "checkedAt": "2026-09-29",
     "timelineDate": "2025-03-03",
     "timelineLabel": "Reported program launch",
-    "weekSuffix": "since reported launch"
+    "weekSuffix": "since reported launch",
+    "networks": [
+      "Arbitrum",
+      "Base",
+      "Arc"
+    ],
+    "networkNote": "Supported collateral contract networks: USDT on Arbitrum, USDC on Base and Arc. Settlement movements use zk verification.",
+    "networkCheckedAt": "2026-09-30"
   },
   {
     "start": "2026-05-21",
@@ -361,9 +467,18 @@ const programs=[
       [
         "Season 2 official launch and pool",
         "https://docs.nado.xyz/incentives-and-rewards/points/season-2-live"
+      ],
+      [
+        "Network · official documentation",
+        "https://docs.nado.xyz/"
       ]
     ],
-    "checkedAt": "2026-09-29"
+    "checkedAt": "2026-09-29",
+    "networks": [
+      "Ink"
+    ],
+    "networkNote": "Order matching uses an off-chain sequencer; risk and settlement run on Ink L2.",
+    "networkCheckedAt": "2026-09-30"
   },
   {
     "start": "2026-01-30",
@@ -389,9 +504,18 @@ const programs=[
       [
         "Season 2 launch confirms 2026",
         "https://docs.nado.xyz/incentives-and-rewards/points/season-2-live"
+      ],
+      [
+        "Network · official documentation",
+        "https://docs.nado.xyz/"
       ]
     ],
-    "checkedAt": "2026-09-29"
+    "checkedAt": "2026-09-29",
+    "networks": [
+      "Ink"
+    ],
+    "networkNote": "Order matching uses an off-chain sequencer; risk and settlement run on Ink L2.",
+    "networkCheckedAt": "2026-09-30"
   },
   {
     "start": "2025-03-31",
@@ -415,9 +539,18 @@ const programs=[
       [
         "Program launch and Season 2 update",
         "https://www.ostium.com/blog/introducing-the-ostium-points-program"
+      ],
+      [
+        "Network · official documentation",
+        "https://www.ostium.com/"
       ]
     ],
-    "checkedAt": "2026-09-29"
+    "checkedAt": "2026-09-29",
+    "networks": [
+      "Arbitrum"
+    ],
+    "networkNote": "Positions are collateralized and settled in USDC on Arbitrum.",
+    "networkCheckedAt": "2026-09-30"
   },
   {
     "start": "2025-11-24",
@@ -443,9 +576,19 @@ const programs=[
       [
         "Current point categories",
         "https://docs.standx.com/docs/standx-perps-solutions/network-yield"
+      ],
+      [
+        "Network · official documentation",
+        "https://docs.standx.com/"
       ]
     ],
-    "checkedAt": "2026-09-29"
+    "checkedAt": "2026-09-29",
+    "networks": [
+      "BNB Chain",
+      "Solana"
+    ],
+    "networkNote": "Official documentation lists mainnet on BNB Chain and Solana.",
+    "networkCheckedAt": "2026-09-30"
   },
   {
     "status": "upcoming",
@@ -477,9 +620,18 @@ const programs=[
       [
         "Official help center",
         "https://help.arcus.xyz/"
+      ],
+      [
+        "Network · official documentation",
+        "https://arcus.xyz/"
       ]
     ],
-    "pointsConfirmed": false
+    "pointsConfirmed": false,
+    "networks": [
+      "Robinhood Chain"
+    ],
+    "networkNote": "Announced venue on Robinhood Chain; upcoming status does not confirm a points launch.",
+    "networkCheckedAt": "2026-09-30"
   },
   {
     "status": "upcoming",
@@ -503,9 +655,18 @@ const programs=[
       [
         "Official introduction and network status",
         "https://docs.noether.exchange/"
+      ],
+      [
+        "Network · official documentation",
+        "https://docs.noether.exchange/"
       ]
     ],
-    "pointsConfirmed": false
+    "pointsConfirmed": false,
+    "networks": [
+      "Stellar · Testnet"
+    ],
+    "networkNote": "Runs on Stellar testnet using Soroban. Mainnet is planned.",
+    "networkCheckedAt": "2026-09-30"
   }
 ];
 // Curated snapshots; capture date is not the provider observation timestamp.
@@ -724,14 +885,15 @@ function totalInfo(p,now=Date.now(),format=compact){
  return{text:Number.isFinite(p.total)?format(p.total):'Not available',label:p.totalLabel,estimated:false};
 }
 function totalHTML(p,format=compact){const t=totalInfo(p,Date.now(),format);return '<span class="number '+(t.text==='Not available'?'missing':'')+'">'+esc(t.text)+'</span><span class="sub '+(t.estimated?'estimate-label':'')+'">'+esc(t.label)+'</span>';}
+function networkHTML(p){return '<span class="networks"><span class="network-label">Network</span>'+p.networks.map(n=>'<span class="network-chip">'+esc(n)+'</span>').join('')+'</span>';}
 let filter='all';
 const rows=document.getElementById('rows'),search=document.getElementById('search'),sort=document.getElementById('sort'),dialog=document.getElementById('detail');
 const statusLabels={active:'Active',review:'Needs review',ended:'Completed',upcoming:'Upcoming'};
-function filteredPrograms(){const q=search.value.trim().toLowerCase();const now=Date.now();return programs.filter(p=>{const matches=filter==='all'||p.status===filter||(filter==='ending'&&p.status==='active'&&endInfo(p,now)&&endInfo(p,now).ms>now&&endInfo(p,now).ms-now<=30*DAY);return matches&&`${p.name} ${p.season}`.toLowerCase().includes(q)}).sort((a,b)=>sort.value==='name'?a.name.localeCompare(b.name):sort.value==='start'?(b.start?parseDate(b.start):-Infinity)-(a.start?parseDate(a.start):-Infinity):sort.value==='end'?(endInfo(a,now)?.ms??Infinity)-(endInfo(b,now)?.ms??Infinity):({active:0,upcoming:1,review:2,ended:3}[a.status]-{active:0,upcoming:1,review:2,ended:3}[b.status]));}
-function render(){const list=filteredPrograms();document.getElementById('result-count').textContent=list.length;document.getElementById('showing').textContent=`Showing ${list.length} of ${programs.length} entries`;document.getElementById('venue-count').textContent=new Set(programs.map(p=>p.name)).size;document.getElementById('active-count').textContent=programs.filter(p=>p.status==='active').length;rows.innerHTML=list.length?list.map(p=>`<button class="program-row" data-program="${p.id}" aria-label="View ${esc(p.name+' '+p.season)} details"><div class="exchange"><span class="monogram" aria-hidden="true">${p.mark}</span><span><strong>${p.name}</strong><small>${p.season}</small><span class="badge ${p.status}">${statusLabels[p.status]}</span></span></div><div class="timeline">${timelineHTML(p)}</div><div class="weekly"><span class="number ${p.weekly===null?'missing':''}">${weeklyText(p)}</span><span class="sub">${p.weeklyLabel}</span></div><div class="total">${totalHTML(p)}</div>${metricCells(p)}<span class="chevron" aria-hidden="true">›</span></button>`).join(''):`<div class="empty"><h3>No matching entries.</h3><p>${filter==='ending'?'No active program has a confirmed exact end within 30 days.':filter==='upcoming'?'No upcoming entry matches this search.':'Try another exchange or change the status filter.'}</p><button id="reset">Show all programs</button></div>`;rows.querySelectorAll('[data-program]').forEach(b=>b.addEventListener('click',()=>openProgram(b.dataset.program)));document.getElementById('reset')?.addEventListener('click',()=>{search.value='';setFilter('all')});}
+function filteredPrograms(){const q=search.value.trim().toLowerCase();const now=Date.now();return programs.filter(p=>{const matches=filter==='all'||p.status===filter||(filter==='ending'&&p.status==='active'&&endInfo(p,now)&&endInfo(p,now).ms>now&&endInfo(p,now).ms-now<=30*DAY);return matches&&`${p.name} ${p.season} ${p.networks.join(" ")}`.toLowerCase().includes(q)}).sort((a,b)=>sort.value==='name'?a.name.localeCompare(b.name):sort.value==='start'?(b.start?parseDate(b.start):-Infinity)-(a.start?parseDate(a.start):-Infinity):sort.value==='end'?(endInfo(a,now)?.ms??Infinity)-(endInfo(b,now)?.ms??Infinity):({active:0,upcoming:1,review:2,ended:3}[a.status]-{active:0,upcoming:1,review:2,ended:3}[b.status]));}
+function render(){const list=filteredPrograms();document.getElementById('result-count').textContent=list.length;document.getElementById('showing').textContent=`Showing ${list.length} of ${programs.length} entries`;document.getElementById('venue-count').textContent=new Set(programs.map(p=>p.name)).size;document.getElementById('active-count').textContent=programs.filter(p=>p.status==='active').length;rows.innerHTML=list.length?list.map(p=>`<button class="program-row" data-program="${p.id}" aria-label="View ${esc(p.name+' '+p.season)} details"><div class="exchange"><span class="monogram" aria-hidden="true">${p.mark}</span><span><strong>${p.name}</strong><small>${p.season}</small>${networkHTML(p)}<span class="badge ${p.status}">${statusLabels[p.status]}</span></span></div><div class="timeline">${timelineHTML(p)}</div><div class="weekly"><span class="number ${p.weekly===null?'missing':''}">${weeklyText(p)}</span><span class="sub">${p.weeklyLabel}</span></div><div class="total">${totalHTML(p)}</div>${metricCells(p)}<span class="chevron" aria-hidden="true">›</span></button>`).join(''):`<div class="empty"><h3>No matching entries.</h3><p>${filter==='ending'?'No active program has a confirmed exact end within 30 days.':filter==='upcoming'?'No upcoming entry matches this search.':'Try another exchange or change the status filter.'}</p><button id="reset">Show all programs</button></div>`;rows.querySelectorAll('[data-program]').forEach(b=>b.addEventListener('click',()=>openProgram(b.dataset.program)));document.getElementById('reset')?.addEventListener('click',()=>{search.value='';setFilter('all')});}
 function setFilter(value){filter=value;document.querySelectorAll('[data-filter]').forEach(b=>{b.classList.toggle('selected',b.dataset.filter===value);b.setAttribute('aria-pressed',String(b.dataset.filter===value))});render();}
 function showDialog(){if(!dialog.open)dialog.showModal();}
-function openProgram(id){const p=programs.find(x=>x.id===id);if(!p)throw new Error('Unknown program');document.getElementById('dialog-content').innerHTML=`<div class="eyebrow">PROGRAM DETAILS · CHECKED ${fmtDate(CHECKED)}</div><div class="detail-head"><span class="monogram">${p.mark}</span><div><h2 id="dialog-title">${p.name}</h2><p>${p.season} <span class="badge ${p.status}">${statusLabels[p.status]}</span></p></div></div><div class="detail-timeline">${timelineHTML(p)}</div><div class="detail-grid"><div><small>${p.timelineDate?(p.timelineLabel||'First weekly drop'):'Start date'}</small><strong>${startText(p)}</strong></div><div><small>${endLabel(p)}</small><strong>${endText(p)}</strong></div><div><small>${p.weeklyLabel}</small><strong>${weeklyText(p,num)}</strong></div><div><small>Total distributed</small>${totalHTML(p,num)}</div></div><div class="note ${p.status==='review'?'review':''}">${p.note}</div><h3>Program notes</h3><p>${p.rules}</p>${metricsHTML(p)}<h3>Distribution history</h3>${p.history.length?`<p class="history-note">${p.history.length} verified announcements · ${num(p.history.reduce((sum,r)=>sum+r.amount,0))} points recorded. Partial coverage; not the full program total. Exact distribution dates are not verified here, so records use their announcement IDs.</p>${p.history.map(r=>`<div class="history-row"><a href="${r.url}" target="_blank" rel="noopener noreferrer">${r.label}</a><div class="track"><span class="fill" style="width:${r.amount/Math.max(...p.history.map(x=>x.amount))*100}%"></span></div><strong>${num(r.amount)}</strong></div>`).join('')}`:'<p>No individual weekly distributions are recorded for this program. An announced weekly pool is not a substitute for actual distribution history.</p>'}<h3>Sources & verification</h3><ul class="source-list">${p.refs.map(([label,url])=>`<li><a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a></li>`).join('')}</ul><p class="history-note">Research snapshot: ${fmtDate(CHECKED)}. Program facts do not refresh automatically. Elapsed time is calculated from known dates. Program points are not comparable monetary units.</p>`;showDialog();}
+function openProgram(id){const p=programs.find(x=>x.id===id);if(!p)throw new Error('Unknown program');document.getElementById('dialog-content').innerHTML=`<div class="eyebrow">PROGRAM DETAILS · CHECKED ${fmtDate(CHECKED)}</div><div class="detail-head"><span class="monogram">${p.mark}</span><div><h2 id="dialog-title">${p.name}</h2><p>${p.season} <span class="badge ${p.status}">${statusLabels[p.status]}</span></p></div></div><div class="network-detail">${networkHTML(p)}<p>${esc(p.networkNote)}</p><small>Network checked ${fmtDate(p.networkCheckedAt)} · Official sources below</small></div><div class="detail-timeline">${timelineHTML(p)}</div><div class="detail-grid"><div><small>${p.timelineDate?(p.timelineLabel||'First weekly drop'):'Start date'}</small><strong>${startText(p)}</strong></div><div><small>${endLabel(p)}</small><strong>${endText(p)}</strong></div><div><small>${p.weeklyLabel}</small><strong>${weeklyText(p,num)}</strong></div><div><small>Total distributed</small>${totalHTML(p,num)}</div></div><div class="note ${p.status==='review'?'review':''}">${p.note}</div><h3>Program notes</h3><p>${p.rules}</p>${metricsHTML(p)}<h3>Distribution history</h3>${p.history.length?`<p class="history-note">${p.history.length} verified announcements · ${num(p.history.reduce((sum,r)=>sum+r.amount,0))} points recorded. Partial coverage; not the full program total. Exact distribution dates are not verified here, so records use their announcement IDs.</p>${p.history.map(r=>`<div class="history-row"><a href="${r.url}" target="_blank" rel="noopener noreferrer">${r.label}</a><div class="track"><span class="fill" style="width:${r.amount/Math.max(...p.history.map(x=>x.amount))*100}%"></span></div><strong>${num(r.amount)}</strong></div>`).join('')}`:'<p>No individual weekly distributions are recorded for this program. An announced weekly pool is not a substitute for actual distribution history.</p>'}<h3>Sources & verification</h3><ul class="source-list">${p.refs.map(([label,url])=>`<li><a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a></li>`).join('')}</ul><p class="history-note">Research snapshot: ${fmtDate(CHECKED)}. Program facts do not refresh automatically. Elapsed time is calculated from known dates. Program points are not comparable monetary units.</p>`;showDialog();}
 function openMethod(){document.getElementById('dialog-content').innerHTML=`<div class="eyebrow">ABOUT THE DATA</div><h2 id="dialog-title">Clarity over false precision.</h2><p>Openpers is an independent directory of perpetual exchange points programs. This first edition is a curated research snapshot dated ${fmtDate(CHECKED)}.</p><h3>What the labels mean</h3><ul><li><strong>Active:</strong> the reviewed documentation or recent official announcements describe an ongoing program.</li><li><strong>Upcoming:</strong> future programs and early exchanges to follow. Entries labeled No points program confirmed have no verified points launch and do not promise future rewards. Exchange beta and mainnet dates are separate from points dates.</li><li><strong>Needs review:</strong> dates or current status cannot be reconciled, or the live source could not be retrieved.</li><li><strong>Completed:</strong> an official source explicitly records the season end.</li><li><strong>Weekly cap / announced pool:</strong> a program parameter, not a recorded payment.</li><li><strong>Partial total:</strong> the sum of only the distributions collected here.</li></ul><h3>How time is calculated</h3><p>Dates use UTC. Week 1 starts at the listed date; week numbers measure elapsed calendar time, not official reward epochs. When a season start is unavailable, a dated allocation or reported launch can anchor the counter; the label states that basis and source confidence. Exact official dates determine elapsed progress; date-only ends include the final day. An end derived from an explicitly published duration is retained. Without an exact end, the bar stays halfway and says End date unknown. That fixed indicator is decorative, not 50% elapsed. No estimated dates or rolling targets are generated. Official end windows remain notes and do not qualify for Ending soon. Unconfirmed Upcoming entries do not imply a points timeline.</p><h3>Estimated point totals</h3><p>When no complete reported total is available, Estimated totals multiply the current weekly amount by fully elapsed seven-day periods from the listed start or timeline anchor. This is a rough model, not a sum of recorded payouts. Weekly ranges, floors and caps retain their meaning; past rate changes, bonuses and deductions are not reconstructed. Completed seasons stop at their recorded end. Partial recorded totals remain in distribution history. Missing weekly amounts or anchors stay unavailable.</p><h3>Funding and market snapshots</h3><p>All financial figures are USD. Funding labels distinguish cumulative totals from individual rounds. Self-funded does not mean a disclosed zero-dollar budget. Parent-company raises and valuations are not exchange funding. Volume is the provider’s reported 24h notional volume, not spot volume or independently audited activity. Open interest is outstanding USD exposure, not the number of positions. Lighter metrics cover Robinhood Chain only; Paradex excludes options. Open program details for source links, scope and snapshot dates. Provider observation times are unavailable; snapshots are not synchronized or live. Historical seasons show current venue metrics.</p><h3>What updates automatically?</h3><p>Elapsed weeks and estimated point totals update in the browser. Program facts, funding, distributions and market metrics are curated snapshots. Missing values remain unavailable.</p><h3>Coverage</h3><p>Programs known to have ended before 1 January 2026 are excluded. This is not an exhaustive market list. Upcoming exchanges do not promise a future points program. Point totals are not comparable monetary units.</p>`;showDialog();}
 document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>setFilter(b.dataset.filter)));search.addEventListener('input',render);sort.addEventListener('change',render);document.getElementById('method-btn').addEventListener('click',openMethod);document.getElementById('footer-method').addEventListener('click',openMethod);document.querySelector('.close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});render();setInterval(render,60000);
 if(document.modelContext?.registerTool){try{Promise.resolve(document.modelContext.registerTool({name:'filter_points_programs',title:'Filter points programs',description:'Filter the visible Openpers program list by exchange name and program status.',inputSchema:{type:'object',properties:{query:{type:'string'},status:{type:'string',enum:['all','active','upcoming','ending','ended','review']}},additionalProperties:false},annotations:{readOnlyHint:false,untrustedContentHint:false},execute(input){if(!input||typeof input!=='object'||Object.keys(input).some(k=>!['query','status'].includes(k))||(input.query!==undefined&&typeof input.query!=='string')||(input.status!==undefined&&!['all','active','upcoming','ending','ended','review'].includes(input.status)))throw new Error('Invalid filter');search.value=input.query??'';setFilter(input.status??'all');return{count:filteredPrograms().length,programs:filteredPrograms().map(p=>({id:p.id,name:p.name,season:p.season,status:p.status}))}}})).catch(()=>{});}catch{}}
