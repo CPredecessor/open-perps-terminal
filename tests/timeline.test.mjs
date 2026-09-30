@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 
 const source = readFileSync(new URL('../public/openpers/app.js', import.meta.url), 'utf8');
-const api = vm.runInNewContext(source.slice(0, source.indexOf("let filter='all'")) + '\n({programs,endInfo,timeline,timelineHTML,startText,endText,weeklyText,usd,venueMetrics,metricCells,totalInfo})');
+const api = vm.runInNewContext(source.slice(0, source.indexOf("let filter='all'")) + '\n({programs,endInfo,timeline,timelineHTML,startText,endText,weeklyText,usd,venueMetrics,metricCells,totalInfo,traderCell,traderMetrics})');
 
 test('estimated totals preserve official totals, whole weeks, ranges and season boundaries', () => {
   const p={status:'active',start:'2026-09-01',weekly:100,total:null};
@@ -122,4 +122,15 @@ test('all records have unique IDs, sources and render without invalid numbers', 
     assert.doesNotMatch(api.timelineHTML(p), /NaN|undefined|Invalid Date/, p.id);
     if (p.start && p.end) assert.ok(p.start <= p.end, p.id);
   }
+});
+
+test('trader metrics preserve period, rounding, scope and missing values',()=>{
+ assert.match(api.traderCell({name:'Nado'}),/≈ 1,250/);
+ assert.match(api.traderCell({name:'Nado'}),/24h · reported/);
+ assert.match(api.traderCell({name:'Ostium'}),/Daily · 29 Sep 2026/);
+ assert.match(api.traderCell({name:'Variational'}),/Not available/);
+ assert.match(api.traderCell({name:'Arcus'}),/Not available/);
+ assert.doesNotMatch(api.traderCell({name:'Ostium'}),/\$/);
+ api.traderMetrics.Test={value:0,period:'Daily',scope:'Test',checkedAt:'2026-09-30'};
+ assert.match(api.traderCell({name:'Test'}),/>0</);
 });

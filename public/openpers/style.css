@@ -8,9 +8,11 @@
 .badge.upcoming{background:#e4eaf2;color:#415e7c}.upcoming-box{border-color:#d8e0e9}.upcoming-box .time-pill{background:#e4eaf2;color:#415e7c}
 
 /* Funding and scoped market snapshots */
-.page{max-width:1800px}.market-caption{font-size:12px;color:var(--muted);margin:0 0 14px}.table-scroll{overflow-x:auto}.list-head,.program-row{grid-template-columns:175px minmax(280px,1.7fr) repeat(5,minmax(115px,1fr)) 16px;gap:18px;min-width:1290px}.metric .number{white-space:nowrap}.unknown-end .fill{background:#93a28b}.unknown-end .time-pill{background:#e3e7df;color:#596654}.unknown-end{background:#f0f3eb}.detail-grid strong{overflow-wrap:anywhere}
+.page{max-width:1800px}.market-caption{font-size:12px;color:var(--muted);margin:0 0 14px}.table-scroll{overflow-x:auto}.list-head,.program-row{grid-template-columns:175px minmax(280px,1.7fr) repeat(6,minmax(115px,1fr)) 16px;gap:18px;min-width:1440px}.metric .number{white-space:nowrap}.unknown-end .fill{background:#93a28b}.unknown-end .time-pill{background:#e3e7df;color:#596654}.unknown-end{background:#f0f3eb}.detail-grid strong{overflow-wrap:anywhere}
 @media(max-width:760px){.table-scroll{overflow:visible}.program-row{min-width:0;grid-template-columns:1fr 1fr;gap:18px}.list-head{display:none}.metric:before{display:block;font-size:10px;letter-spacing:1px;color:var(--muted);margin-bottom:5px}.funding:before{content:'FUNDING · USD'}.volume:before{content:'PERP VOLUME · 24H'}.oi:before{content:'OPEN INTEREST · USD'}.metric{min-width:0}.metric .number{white-space:normal}}
 
 .estimate-label{color:#865b30;font-weight:600}
 
 .networks{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin:7px 0}.network-label{font-size:10px;color:var(--muted);width:100%;letter-spacing:.4px}.network-chip{display:inline-block;border:1px solid #cdd8c7;border-radius:5px;padding:3px 6px;color:#365743;background:#f0f4ec;font-size:11px;line-height:1.35}.network-detail{margin:0 0 22px;padding:14px 16px;border:1px solid #dce3d5;border-radius:8px}.network-detail p{margin:8px 0;font-size:13px}.network-detail>small{color:var(--muted);font-size:11px}
+
+.traders .number{white-space:normal}.traders .sub{line-height:1.5}@media(max-width:760px){.traders:before{content:"ACTIVE TRADERS"}}
