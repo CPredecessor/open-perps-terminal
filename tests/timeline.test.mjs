@@ -110,7 +110,8 @@ test('upcoming entries are searchable and excluded from active programs', () => 
   assert.deepEqual(Array.from(run('upcoming','stellar')), ['Noether']);
   assert.deepEqual(Array.from(run('active','robinhood chain')), ['Lighter']);
   assert.deepEqual(Array.from(run('upcoming','noether')), ['Noether']);
-  assert.equal(run('all','hyperliquid').length, 0);
+  assert.equal(api.programs.some(p=>p.name==='Hyperliquid'), false);
+  assert.deepEqual(Array.from(run('no-points','hyperliquid')), ['tradeXYZ']);
   assert.equal(run('ended','lighter').length, 0);
   assert.ok(run('ended','nado').length);
 });
@@ -133,4 +134,16 @@ test('trader metrics preserve period, rounding, scope and missing values',()=>{
  assert.doesNotMatch(api.traderCell({name:'Ostium'}),/\$/);
  api.traderMetrics.Test={value:0,period:'Daily',scope:'Test',checkedAt:'2026-09-30'};
  assert.match(api.traderCell({name:'Test'}),/>0</);
+});
+
+test('live venues and token rewards never imply points timelines or totals',()=>{
+ for(const name of ['GMX','tradeXYZ']){
+ const p=api.programs.find(p=>p.name===name);
+ assert.equal(api.timeline(p).percent,null);
+ assert.equal(api.totalInfo({...p,weekly:500,start:'2026-01-01'}).estimated,false);
+ assert.equal(api.weeklyText(p),'Not applicable');
+ assert.doesNotMatch(api.timelineHTML(p),/class="fill"|role="progressbar"/);
+ }
+ assert.equal(api.programs.filter(p=>p.name==='Aster').length,1);
+ assert.equal(api.programs.find(p=>p.name==='Ventuals').weekly,500000);
 });
