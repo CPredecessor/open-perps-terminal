@@ -34,3 +34,9 @@ The current data is a research snapshot from 29 September 2026, not a live marke
 The older trading terminal, wallet analysis, market adapters and .NET backend have been retired. They remain recoverable from Git history. The separately hosted Openpers edition is not automatically synchronized with this repository.
 
 Apache-2.0 license. Independent research; not affiliated with the exchanges.
+
+## Community and publication
+
+Use the repository issue forms to suggest missing DEXes, correct program data or report bugs. Favorites are stored locally in your browser. Program details have shareable #dex/ links. Network filters and market sorting can be combined with search and status filters. Entries need a freshness review after 14 days; this does not change their program status.
+
+The publication policy is documented in docs/publication-policy.md. CODEOWNERS identifies the reviewer but requires separate GitHub branch protection configuration. No deployment workflow is configured yet.

@@ -1,0 +1,24 @@
+name: Correct program data
+description: Report outdated or incorrect exchange or program information
+title: "Data correction: "
+body:
+  - type: input
+    id: program
+    attributes:
+      label: Exchange and season
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: What should change?
+      description: Include the current value and the corrected value, if known.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Supporting official sources
+      description: Include links and announcement dates. Reports are public and reviewed before changes are published.
+    validations:
+      required: true

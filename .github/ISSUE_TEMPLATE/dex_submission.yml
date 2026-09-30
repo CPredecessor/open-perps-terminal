@@ -1,0 +1,57 @@
+name: Suggest a missing DEX
+description: Suggest a perpetual exchange with or without a points program
+title: "DEX suggestion: "
+body:
+  - type: markdown
+    attributes:
+      value: "Submissions are public and reviewed before listing. Use official URLs without referral codes. Never include wallet secrets or personal account information."
+  - type: input
+    id: exchange
+    attributes:
+      label: Exchange name
+    validations:
+      required: true
+  - type: input
+    id: website
+    attributes:
+      label: Official website
+      placeholder: https://
+    validations:
+      required: true
+  - type: input
+    id: network
+    attributes:
+      label: Execution or settlement network
+      description: Write unknown if not verified; deposit networks may differ.
+    validations:
+      required: true
+  - type: dropdown
+    id: status
+    attributes:
+      label: Program status
+      options:
+        - Active points program
+        - Upcoming or announced points program
+        - Live exchange with no confirmed points
+        - Early exchange or testnet
+        - Trading rewards rather than points
+        - Unknown
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Official sources
+      description: Link the perpetual product and any points rules or announcements. Unknown dates are fine.
+    validations:
+      required: true
+  - type: textarea
+    id: dates
+    attributes:
+      label: Season dates and weekly allocation, if known
+      description: Include sources. Do not estimate an end date.
+  - type: textarea
+    id: affiliation
+    attributes:
+      label: Affiliation or other context
+      description: Tell us if you represent the exchange. Referral campaigns are handled separately and do not affect listing or ranking.
