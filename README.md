@@ -10,7 +10,7 @@ Install Node.js 22.13 or newer, then run:
 npm run dev
 ```
 
-Open http://127.0.0.1:5173/. No dependencies, database or credentials are needed. The previous `/openpers/index.html` preview link redirects to the home page.
+Open http://127.0.0.1:5173/. No dependency installation or external service credentials are needed. The Node server also receives account-free submissions into a private local directory. The previous `/openpers/index.html` preview link redirects to the home page.
 
 ## Validate and build
 
@@ -20,7 +20,7 @@ npm test
 npm run build
 ```
 
-The build copies the three static site files to `dist/`, ready for static hosting. It does not publish them.
+The build copies the static assets to `dist/`. Account-free submissions additionally require the Node server and private persistent storage; static hosting alone cannot receive them. The build does not publish anything.
 
 ## Source and data
 
@@ -37,6 +37,6 @@ Apache-2.0 license. Independent research; not affiliated with the exchanges.
 
 ## Community and publication
 
-Use the repository issue forms to suggest missing DEXes, correct program data or report bugs. Favorites are stored locally in your browser. Program details have shareable #dex/ links. Network filters and market sorting can be combined with search and status filters. Entries need a freshness review after 14 days; this does not change their program status.
+Use the in-site account-free form to suggest missing DEXes or correct data. Developer bug reports still use GitHub. Run `npm run submissions:list` on the server to review private submissions. Deployment and anti-spam requirements are in `docs/submissions.md`. Favorites are stored locally in your browser. Program details have shareable #dex/ links. Network filters and market sorting can be combined with search and status filters. Entries need a freshness review after 14 days; this does not change their program status.
 
 The publication policy is documented in docs/publication-policy.md. CODEOWNERS identifies the reviewer but requires separate GitHub branch protection configuration. No deployment workflow is configured yet.

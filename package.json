@@ -10,7 +10,8 @@
     "dev": "node scripts/serve.mjs",
     "start": "node scripts/serve.mjs",
     "build": "node scripts/build.mjs",
-    "lint": "node --check public/openpers/app.js && node --check scripts/serve.mjs && node --check scripts/build.mjs",
-    "test": "node --test"
+    "lint": "node --check public/openpers/app.js && node --check scripts/serve.mjs && node --check scripts/build.mjs && node --check scripts/submissions.mjs && node --check scripts/review-submissions.mjs && node --check public/openpers/submission-form.js",
+    "test": "node --test",
+    "submissions:list": "node scripts/review-submissions.mjs"
   }
 }
