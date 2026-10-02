@@ -1,0 +1,103 @@
+{
+  "capturedAt": "2026-10-02",
+  "oiSource": "https://api.llama.fi/overview/open-interest?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true",
+  "note": "Provider observation timestamps unavailable. Volumes are rounded public-page 24h figures. OI is the API total24h field, representing outstanding USD exposure, not traded volume or position count.",
+  "venues": {
+    "Perpl": {
+      "slug": "perpl",
+      "volume": 15280000,
+      "oi": 1672928,
+      "source": "https://defillama.com/protocol/perpl"
+    },
+    "SoDEX": {
+      "slug": "sodex-perps",
+      "volume": 761090000,
+      "oi": 116586287,
+      "source": "https://defillama.com/protocol/sodex-perps"
+    },
+    "Lighter": {
+      "slug": "lighter-robinhood-perps",
+      "volume": 587120000,
+      "oi": 228731251,
+      "source": "https://defillama.com/protocol/lighter-robinhood-perps"
+    },
+    "Extended": {
+      "slug": "extended-perps",
+      "volume": 258910000,
+      "oi": 93659970,
+      "source": "https://defillama.com/protocol/extended-perps"
+    },
+    "Paradex": {
+      "slug": "paradex-perps",
+      "volume": 15930000,
+      "oi": 9220010,
+      "source": "https://defillama.com/protocol/paradex-perps"
+    },
+    "Pacifica": {
+      "slug": "pacifica-perps",
+      "volume": 434650000,
+      "oi": 63505377,
+      "source": "https://defillama.com/protocol/pacifica-perps"
+    },
+    "Variational": {
+      "slug": "variational",
+      "volume": 2881000000,
+      "oi": 1068814441,
+      "source": "https://defillama.com/protocol/variational"
+    },
+    "BULK": {
+      "slug": "bulk",
+      "volume": 33550000,
+      "oi": 7900235,
+      "source": "https://defillama.com/protocol/bulk"
+    },
+    "Hibachi": {
+      "slug": "hibachi",
+      "volume": 26370000,
+      "oi": 1301564,
+      "source": "https://defillama.com/protocol/hibachi"
+    },
+    "Nado": {
+      "slug": "nado-perps",
+      "volume": 332050000,
+      "oi": 43437328,
+      "source": "https://defillama.com/protocol/nado-perps"
+    },
+    "Ostium": {
+      "slug": "ostium",
+      "volume": 14790000,
+      "oi": 10298257,
+      "source": "https://defillama.com/protocol/ostium"
+    },
+    "StandX": {
+      "slug": "standx-perps",
+      "volume": 402960000,
+      "oi": 22050243,
+      "source": "https://defillama.com/protocol/standx-perps"
+    },
+    "Decibel": {
+      "slug": "decibel",
+      "volume": 41550000,
+      "oi": 4319527,
+      "source": "https://defillama.com/protocol/decibel"
+    },
+    "Aster": {
+      "slug": "aster-perps",
+      "volume": 2003000000,
+      "oi": 1408768599,
+      "source": "https://defillama.com/protocol/aster-perps"
+    },
+    "tradeXYZ": {
+      "slug": "tradexyz",
+      "volume": 2055000000,
+      "oi": 3857821555,
+      "source": "https://defillama.com/protocol/tradexyz"
+    },
+    "Arcus": {
+      "slug": "arcus-perps",
+      "volume": 487930000,
+      "oi": 46281569,
+      "source": "https://defillama.com/protocol/arcus-perps"
+    }
+  }
+}

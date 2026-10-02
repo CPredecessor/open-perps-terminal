@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-02",
+  "changes": [
+    {
+      "venue": "Arcus",
+      "status": "active",
+      "start": "2026-10-01",
+      "sources": [
+        "https://arcus.xyz/blog/introducing-arcus-points",
+        "https://arcus.xyz/blog/arcus-invite-codes-are-live"
+      ],
+      "note": "Season 1 live; weekly Wednesday 3 PM EST (source wording retained). Pool and end unknown. Season 0 is separate. Access now uses invite codes."
+    },
+    {
+      "venue": "SoDEX",
+      "source": "https://sodex.com/documentation/sopoints/layer-1-season",
+      "note": "Early-bird enrollment closed 29 September at 12:00 UTC; existing 20% boosts retained. Base weekly pool unchanged."
+    },
+    {
+      "venue": "Hibachi",
+      "source": "https://docs.hibachi.xyz/hibachi-rewards/hibachi-points",
+      "note": "Added current 28 September–5 October per-pair FX thresholds and multipliers."
+    },
+    {
+      "venue": "Lighter",
+      "source": "https://docs.robinhood.com/chain/lighter-domains/",
+      "note": "Official website corrected to Robinhood Chain deployment; latest collected distributions unchanged."
+    }
+  ],
+  "recheckedPrograms": [
+    "Perpl",
+    "SoDEX",
+    "Extended",
+    "Paradex",
+    "Pacifica",
+    "Variational",
+    "Hibachi",
+    "BULK",
+    "StandX",
+    "Decibel",
+    "Aster",
+    "GMX",
+    "Noether",
+    "tradeXYZ",
+    "Arcus"
+  ],
+  "limitations": [
+    "Lighter and Nado documentation and Ostium blog could not be freshly retrieved; earlier program check dates retained.",
+    "Extended cumulative total remains 68,734,321 as of 29 September; not relabeled as an October payout.",
+    "Funding values were not refreshed; their original verification dates are now separate from market capture dates.",
+    "Market snapshots are not live or synchronized. Unknown pools and end dates remain unknown.",
+    "Existing trader data retains its old capture dates; no trader column added."
+  ],
+  "marketData": "market-snapshot-2026-10-02.json"
+}

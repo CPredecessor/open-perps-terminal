@@ -104,11 +104,11 @@ test('upcoming entries are searchable and excluded from active programs', () => 
   const run = (status, query) => vm.runInNewContext(prefix + `\nfilter=${JSON.stringify(status)}; filteredPrograms().map(p=>p.name);`, {
     document:{getElementById:id=>({value:id==='search'?query:'status'})}
   });
-  assert.deepEqual(Array.from(run('upcoming','arcus')), ['Arcus']);
-  assert.equal(run('active','arcus').length, 0);
+  assert.deepEqual(Array.from(run('active','arcus')), ['Arcus']);
+  assert.equal(run('upcoming','arcus').length, 0);
   assert.deepEqual(Array.from(run('active','monad')), ['Perpl']);
   assert.deepEqual(Array.from(run('upcoming','stellar')), ['Noether']);
-  assert.deepEqual(Array.from(run('active','robinhood chain')), ['Lighter']);
+  assert.deepEqual(Array.from(run('active','robinhood chain')), ['Lighter', 'Arcus']);
   assert.deepEqual(Array.from(run('upcoming','noether')), ['Noether']);
   assert.equal(api.programs.some(p=>p.name==='Hyperliquid'), false);
   assert.deepEqual(Array.from(run('no-points','hyperliquid')), ['tradeXYZ']);
@@ -147,3 +147,5 @@ test('live venues and token rewards never imply points timelines or totals',()=>
  assert.equal(api.programs.filter(p=>p.name==='Aster').length,1);
  assert.equal(api.programs.find(p=>p.name==='Ventuals').weekly,500000);
 });
+
+test('Arcus launch uses Season 1 date, leaves unknown pool and end blank',()=>{const p=api.programs.find(p=>p.name==='Arcus');assert.equal(p.start,'2026-10-01');assert.equal(p.status,'active');assert.equal(p.weekly,null);assert.equal(p.end,null);assert.equal(api.timeline(p,Date.parse('2026-10-02')).percent,50);assert.match(api.metricCells(p),/2 Oct 2026/);});
